@@ -1,14 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
-from accounts.models import  Policy, Account, IDCard, Service, ServiceCategory, AvailableService
+from accounts.models import Account
 
 # Register your models here.
-
-class ServiceInline(admin.StackedInline):
-    model = Service
-    can_delete = False
-    verbose_name_plural = 'Services'
 
 class AccountInline(admin.StackedInline):
     model = Account
@@ -17,22 +12,9 @@ class AccountInline(admin.StackedInline):
     verbose_name_plural = 'Profile'
     
 
-'''
-class PolicyInline(admin.StackedInline):
-    model = Policy
-    can_delete = False
-    verbose_name_plural = 'policies'
-'''
-
-class IDCardInline(admin.StackedInline):
-    model = IDCard
-    can_delete = False
-
-
-
 class AccountAdmin(admin.ModelAdmin):
-    inlines = [AccountInline, IDCardInline]
-    list_display = ['user', 'country', 'city', 'telefon', 'created_by', 'solde']
+    inlines = [AccountInline]
+    #list_display = ['balance', 'country', 'city', 'telefon', 'created_by']
     def get_inline_instances(self, request, obj=None):
         if not obj:
             return list()
@@ -43,8 +25,3 @@ class AccountAdmin(admin.ModelAdmin):
 admin.site.unregister(User)
 admin.site.register(User ,AccountAdmin)
 admin.site.register(Account)
-admin.site.register( Policy)
-admin.site.register(ServiceCategory)
-admin.site.register(AvailableService)
-admin.site.register(Service)
-admin.site.register(IDCard)

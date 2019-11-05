@@ -1,5 +1,4 @@
 from django.db import models
-from .. import settings
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -7,16 +6,21 @@ from django.urls import reverse
 import uuid
 
 
+def ident_file_path(instance, filename):
+    file_ext = filename.split(".")[-1]
+    #name = settings.IDENTIFICATION_DOC_NAME_PREFIX + "." + file_ext
+    name = "avatar" + "." + file_ext
+    return "identifications/ser_{0}_{1}".format(instance.user.id, name)
 
 class Account(models.Model):
     """
     The Account Model extends the User Model with a profile.
     This model provides extra information to identify a user.
     """
-    ACCOUNT_TYPE = settings.ACCOUNTS.get('ACCOUNT_TYPE', ())
+    #ACCOUNT_TYPE = settings.ACCOUNTS.get('ACCOUNT_TYPE', ())
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=ident_file_path,null=True, blank=False)
+    image = models.ImageField(upload_to=ident_file_path,null=True, blank=True)
     date_of_birth = models.DateField(blank=True, null=True)
     country = models.CharField(default='', max_length=50, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True)
@@ -29,12 +33,11 @@ class Account(models.Model):
     balance = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
-    account_type = models.CharField(max_length=1, default='P', blank=False, null=False, choices=ACCOUNT_TYPE)
-    policy = models.ForeignKey(Policy, related_name="accounts", unique=False, null=True,blank=True, on_delete=models.SET_NULL)
+    account_type = models.CharField(max_length=1, default='P', blank=False, null=False, choices=())
     account_uuid = models.UUIDField(default=uuid.uuid4, editable=False, blank=True, null=True)
     email_validated = models.BooleanField(default=False, blank=True, null=True)
     created_by = models.ForeignKey(User, related_name="created_accounts", null=True,blank=True, on_delete=models.SET_NULL)
-    #reset_token = models.CharField(max_length=8, blank=True, null=True)
+    reset_token = models.CharField(max_length=8, blank=True, null=True)
 
 
     class Meta:
@@ -52,7 +55,7 @@ class Account(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse('accounts:account_detail', kwargs={'pk':self.pk})
+        return reverse('accounts:account-detail', kwargs={'pk':self.pk})
 
     def full_name(self):
         return self.user.get_full_name()
@@ -62,10 +65,7 @@ class Account(models.Model):
 
 
 
-def ident_file_path(instance, filename):
-    file_ext = filename.split(".")[-1]
-    name = settings.IDENTIFICATION_DOC_NAME_PREFIX + "." + file_ext
-    return "identifications/ser_{0}_{1}".format(instance.user.id, name)
+
     
 
 

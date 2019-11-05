@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from accounts.models import Account, IDCard, Policy, AvailableService, Service, ServiceCategory
+from accounts.models import Account
 from django.contrib.admin.widgets import AdminDateWidget
 import datetime
 
@@ -32,11 +32,6 @@ class UserForm(forms.ModelForm):
 
 
 
-class PolicyForm(forms.ModelForm):
-    class Meta:
-        model = Policy
-        exclude = ['policy_id']
-
 class UpdateAccountForm(forms.ModelForm):
     
     class Meta:
@@ -48,20 +43,6 @@ class AccountForm(forms.ModelForm):
     class Meta:
         model = Account
         exclude = ['is_active_account', 'created_at', 'balance', 'policy']
-
-
-
-class UpdateIDCardForm(forms.ModelForm):
-    
-    class Meta:
-        model = IDCard
-        fields = ("card_number", "image", "delivery_at", "delivery_place", "expire_at",)
-
-
-class IDCardForm(forms.ModelForm):
-    class Meta:
-        model = IDCard
-        fields = ['card_number', 'image', 'user']
 
 
 
@@ -157,28 +138,4 @@ class RegistrationForm(forms.ModelForm):
             account.save()
         return account
     
-
-
-class ServiceCategoryCreationForm(forms.ModelForm):
-    class Meta:
-        model = ServiceCategory
-        exclude = ['created_at','is_active']
-
-
-class AvailableServiceCreationForm(forms.ModelForm):
-    class Meta:
-        model = AvailableService
-        exclude = ['created_at','is_active']
-
-
-class ServiceCreationForm(forms.ModelForm):
-    class Meta:
-        model = Service
-        fields = ['name', 'operator', 'customer', 'customer_reference', 'reference_number', 'category', 'service_instance',
-        'price', 'description', 'issued_at', 'commission']
-
-
-
-class RechargeForm(forms.Form):
-    voucher = forms.CharField(max_length=32, label="Voucher Code")
 
