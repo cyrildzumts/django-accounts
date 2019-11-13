@@ -68,8 +68,8 @@ def register(request):
             return HttpResponseRedirect(result['next_url'])
         else:
             messages.add_message(request, messages.ERROR, 'Your Account could not be created. Pleas checks the form and try again')
-            account_form = AccountCreationForm()
-            user_form = UserSignUpForm()
+            account_form = AccountCreationForm(request.POST)
+            user_form = UserSignUpForm(request.POST)
 
     else:
         # form = UserCreationForm()
