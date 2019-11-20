@@ -7,8 +7,8 @@ app_name = 'accounts'
 urlpatterns = [
     path('', views.user_account, name='account'),
     path('account-detail/<int:pk>/', views.account_details, name='account-detail'),
-    path('email-validation/<uidb64:account_uuid>/<uidb64:token>/', views.email_validation, name='email-validation'),
-    path('send-validation/<uidb64:account_uuid>/', views.email_validation, name='send-validation'),
+    path('email-validation/<uuid:account_uuid>/<uuid:token>/', views.email_validation, name='email-validation'),
+    path('send-validation/<uuid:account_uuid>/', views.email_validation, name='send-validation'),
     path('update/<int:pk>/', views.account_update, name='update'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
@@ -17,7 +17,7 @@ urlpatterns = [
     path('password-reset/', auth_views.PasswordResetView.as_view(success_url=reverse_lazy('accounts:password-reset-done')), name='password-reset'),
     path('password-reset-done/', auth_views.PasswordResetDoneView.as_view(), name='password-reset-done'),
     path('register/', views.register, name='register'),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(success_url=reverse_lazy('accounts:password-reset-complete')), name='password-reset-confirm'),
+    path('reset/<uuid>/<token>/', auth_views.PasswordResetConfirmView.as_view(success_url=reverse_lazy('accounts:password-reset-complete')), name='password-reset-confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password-reset-complete'),
     
     
