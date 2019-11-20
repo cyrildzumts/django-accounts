@@ -13,6 +13,7 @@ from django.forms import modelform_factory
 import sys
 import logging
 import numbers
+import uuid
 
 logger = logging.getLogger('accounts')
 
@@ -69,7 +70,15 @@ class AccountService(ABC):
         return RegistrationForm()
     
     
-
+    @staticmethod
+    def get_account(account_uuid=None):
+        account = None
+        try:
+            account = Account.objects.select_related('user').get(account_uuid=account_uuid)
+        except Account.DoesNotExists:
+            logger.error("No Account found with uuid %s", account_uuid)
+        
+        return account
 
     @staticmethod
     def process_change_password_request(request):
@@ -145,6 +154,21 @@ class AccountService(ABC):
         return result_dict
 
 
+    @staticmethod
+    def generate_email_validation_token(account_uuid=None):
+        token = uuid.uuid4()
+        validated = 1 == Account.objects.filter(account_uuid=account_uuid).update(email_activation_tocken=token)
+        return token, validated
+    @staticmethod
+    def validate_email(account_uuid, token):
+        validated = False
+        account = None
+        if account_uuid and token:
+            account = AccountService.get_account(account_uuid)
+            if account and token and account.email_validation_token == token :
+                updated = Account.objects.filter(pk=account.pk, email_validation_token=token).update(email_validated=True, email_validated_token=None)
+                validated = updated == 1
+        return account, validated
 
     @staticmethod
     def create_account(accountdata=None, userdata=None):

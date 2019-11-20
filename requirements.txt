@@ -1,0 +1,7 @@
+celery==4.3.0
+Django==2.2
+django-crispy-forms==1.8.0
+djangorestframework==3.10.3
+graphviz==0.5.2
+Pillow==6.2.1
+psycopg2-binary==2.8.4

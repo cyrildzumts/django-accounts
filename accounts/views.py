@@ -85,6 +85,38 @@ def register(request):
     }
     return render(request, template_name, context)
 
+def send_validation(request, account_uuid):
+    template_name = "accounts/registration/send_validation.html"
+    account= AccountService.get_account(account_uuid)
+    token, validated = AccountService.generate_email_validation_token(account.uuid)
+    context = {
+        'account'   : account,
+        'token'     : token,
+        'account_uuid'  : account_uuid
+    }
+    if validated:
+        return redirect('accounts:validation_sent', kwargs={'info': context})
+
+    return render(request, template_name, context)
+
+def validation_sent(request, info=None):
+    if info:
+        account = info.get('account', None)
+        token
+
+def email_validation(request, account_uuid=None, token=None):
+
+    template_name = "accounts/registration/email_validation.html"
+    page_title = "Email Validation"
+    account, validated = AccountService.validate_email(account_uuid=account_uuid, token=token)
+    context = {
+        'account'   : account,
+        'validated' : validated,
+        'page_title': page_title
+    }
+    return render(request, template_name, context)
+
+
 @login_required
 def password_change_views(request):
     """ 

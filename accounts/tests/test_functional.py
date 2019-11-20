@@ -85,23 +85,6 @@ class AccountServiceTest(TestCase):
     
     
 
-class AccountPageTest(unittest.TestCase):
-    def setUp(self):
-        self.browser = webdriver.Firefox()
 
-    def tearDown(self):
-        self.browser.quit()
-
-    def test_user_can_login_form_home_page(self):
-        created = AccountService.create_account(accountdata=account1, userdata=user1)
-        #self.assertTrue(created == (Account.objects.filter(user__username=user1['username']).filter(**account1).count() == 1 ))
-        self.browser.get('http://localhost:8000')
-        login_link = self.browser.find_element_by_id('login-link')
-        
-        #username.send_keys(user1['username'])
-        #password.send_keys(user1['password'])
-        #username.send_keys('democlient')
-        #password.send_keys('testuser')
-        #submit.send_keys(Keys.ENTER)
-        #time.sleep(3)
+    
     
