@@ -102,7 +102,8 @@ def send_validation(request, account_uuid):
 def validation_sent(request, info=None):
     if info:
         account = info.get('account', None)
-        token
+        
+    pass
 
 def email_validation(request, account_uuid=None, token=None):
 
