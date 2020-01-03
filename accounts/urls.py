@@ -6,10 +6,10 @@ from accounts import views
 app_name = 'accounts'
 urlpatterns = [
     path('', views.user_account, name='account'),
-    path('account-detail/<int:pk>/', views.account_details, name='account-detail'),
+    path('account-detail/<uuid:account_uuid>/', views.account_details, name='account-detail'),
     path('email-validation/<uuid:account_uuid>/<uuid:token>/', views.email_validation, name='email-validation'),
     path('send-validation/<uuid:account_uuid>/', views.email_validation, name='send-validation'),
-    path('update/<int:pk>/', views.account_update, name='update'),
+    path('update/<uuid:account_uuid>/', views.account_update, name='update'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
     path('password-change/', views.password_change_views, name='password-change'),

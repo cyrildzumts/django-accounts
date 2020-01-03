@@ -206,9 +206,9 @@ def user_account(request):
     return render(request, template_name, context)
 
 @login_required
-def account_details(request, pk=None):
+def account_details(request, account_uuid=None):
     page_title = _("Account Details")
-    instance = get_object_or_404(Account, pk=pk)
+    instance = get_object_or_404(Account, account_uuid=account_uuid)
     template_name = "accounts/account_detail.html"
     #form = AccountForm(request.POST or None, instance=instance)
     context = {
@@ -220,10 +220,10 @@ def account_details(request, pk=None):
 
 
 @login_required
-def account_update(request, pk=None):
+def account_update(request, account_uuid=None):
     
     page_title = _("Edit my account")
-    instance = get_object_or_404(Account, pk=pk)
+    instance = get_object_or_404(Account, account_uuid=account_uuid)
     template_name = "accounts/account_update.html"
     if request.method =="POST":
         form = UpdateAccountForm(request.POST, instance=instance)
@@ -235,8 +235,8 @@ def account_update(request, pk=None):
         else:
             logger.info("Edit Account form is not valid. Errors : %s", form.errors)
             messages.success(request, _("Your account could not be updated. Please check the form and try again."))
-    
-    form = UpdateAccountForm(instance=instance)
+    else :
+        form = UpdateAccountForm(instance=instance)
     context = {
             'page_title':page_title,
             'template_name':template_name,

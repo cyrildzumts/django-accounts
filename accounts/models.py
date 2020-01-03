@@ -64,7 +64,7 @@ class Account(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse('accounts:account-detail', kwargs={'pk':self.pk})
+        return reverse('accounts:account-detail', kwargs={'account_uuid':self.account_uuid})
 
     def full_name(self):
         return self.user.get_full_name()
