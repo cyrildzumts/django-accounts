@@ -3,59 +3,54 @@
 
 
 {% block HEADER_PANEL %}
-    <div class="header--panel row">
-        <span>CONNEXION</span>
-    </div>
+
 {% endblock HEADER_PANEL %}
 {% block HEADER_BANNER %}
-    <div class="header--banner">
-        <p>{%trans "Login"%}</p>
-    </div>
+
 {% endblock HEADER_BANNER %}
 
 
 {% block MAIN %}
-<div class="col col-12">
-
-    <div class="tab-bar">
-        <div class="tab col col-6 bordered" data-toggle="#user-login" data-index="0">
-            <span>{%trans "Login"%}</span>
-        </div>
-        <div class="tab col col-6 bordered" data-toggle="#user-signup" data-index="1">
-                <span>{%trans "Register"%}</span>
+    <div class="hidden-xs col-6">
+        <div class="container">
+            <div class="welcome">
+            
+            </div>
         </div>
     </div>
-
-    <div id="account-dialog" class="container tab-container">
-        <section id="user-login" class="user-login tab-content">
-            <form id="login-form" class="login-form" action="{% url 'accounts:login' %}" method="post"> {% csrf_token %}
-                <div id="error-login" class="error-login left">
-                  <p></p>
-                </div>
-                <div class="form-group">
-                  <input type="text" name="username" placeholder={%trans "Username"%}>
-                </div>
-                <div class="form-group">
-                    <input type="password" name="password" placeholder={%trans "Password"%}>
-                </div>
-                <div class="form-group">
-                   <a class="mat-button mat-button-text" href="{% url 'accounts:password-reset' %}">{% trans "Forgot your password ?" %}</a>
-                </div>
-                <div class="form-group">
-                    <a class="mat-button mat-button-default full" href="{% url 'accounts:register' %}">{% trans "Register" %}</a>
-                </div>
-                <div class="form-group">
-                  
-                  <a class="mat-button mat-button-outlined" href="{% url 'home' %}">{% trans "Cancel" %}</a>
-                  <button id="login-submit" class="mat-button mat-button-default"  name="submit" type="submit">{% trans "Login" %}</button>
-                </div>
-              </form>
-        </section> <!-- End of Section Login-->
-        <section id="signup" class="tab-content">
-            <div class="container">
-               
+    <div class="col-xs-12 col-6">
+        <div class="container">
+            <div class="col-6">
+                <div id="account-dialog" class="container">
+                    <section id="user-login" class="user-login flex">
+                        <form id="login-form" class="login-form" action="{% url 'accounts:login' %}" method="post"> {% csrf_token %}
+                            <div class="form-group">
+                            <div class="mat-input">
+                                <label for="username">{% trans "Username" %}</label>
+                                <input id="username" type="text" name="username">
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="mat-input">
+                                    <label for="password">{% trans "Password" %}</label>
+                                    <input id="password" type="password" name="password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            <a class="mat-button mat-button-text" href="{% url 'accounts:password-reset' %}">{% trans "Forgot your password ?" %}</a>
+                            </div>
+                            
+                            <div class="form-group">
+                            <button id="login-submit" class="mat-button mat-button-default"  name="submit" type="submit">{% trans "Login" %}</button>
+                            </div>
+                            <div class="form-group">
+                                <span>{% trans "New here ? " %}</span><a class="mat-button mat-button-default full" href="{% url 'accounts:register' %}">{% trans "Register instead" %}</a>
+                            </div>
+                        </form>
+                    </section> <!-- End of Section Login-->
+                </div><!--End of container -->
             </div>
-        </section><!-- End of Section signup -->
-    </div><!--End of account-dialog -->
-</div>
+        </div>
+    </div>
+    
 {% endblock MAIN %}
