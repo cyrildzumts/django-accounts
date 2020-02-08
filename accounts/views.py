@@ -26,7 +26,8 @@ def login(request):
     Log in view
     """
     page_title = _("Login")
-    next_page = request.GET.get('next', '/')
+    next_url = request.GET.get('next', '/')
+    logger.debug("Account Login request page Next : \"%s\"", next_url)
     template_name = 'accounts/registration/login.html'
     if request.method == 'POST':
         result = AccountService.process_login_request(request)
@@ -41,7 +42,7 @@ def login(request):
         
         'page_title':page_title,
         'template_name':template_name,
-        'next_url': next_page,
+        'next_url': next_url,
         'form': form,
         'registration_form': register_form,
     }
