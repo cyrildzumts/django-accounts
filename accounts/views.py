@@ -30,10 +30,11 @@ def login(request):
     logger.info("Account Login request page Next : \"%s\"", next_url)
     template_name = 'accounts/registration/login.html'
     if request.method == 'POST':
+        next_url = request.POST.get('next', '/')
         result = AccountService.process_login_request(request)
         if result['user_logged']:
             logger.info("New user logged in. Next :\"%s\"", next_url)
-            return redirect(result['next_url'])
+            return redirect(next_url)
     
     form = AccountService.get_authentication_form()
     register_form = AccountService.get_registration_form()
