@@ -32,7 +32,7 @@ def login(request):
     if request.method == 'POST':
         result = AccountService.process_login_request(request)
         if result['user_logged']:
-            logger.info("New user logged in. Next :", next_urlm)
+            logger.info("New user logged in. Next :", next_url)
             return redirect(result['next_url'])
     
     form = AccountService.get_authentication_form()
