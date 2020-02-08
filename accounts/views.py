@@ -27,7 +27,7 @@ def login(request):
     """
     page_title = _("Login")
     next_url = request.GET.get('next', '/')
-    logger.debug("Account Login request page Next : \"%s\"", next_url)
+    logger.info("Account Login request page Next : \"%s\"", next_url)
     template_name = 'accounts/registration/login.html'
     if request.method == 'POST':
         result = AccountService.process_login_request(request)
