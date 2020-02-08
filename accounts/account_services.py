@@ -98,7 +98,6 @@ class AccountService(ABC):
     def process_login_request(request):
         result_dict = {}
         result_dict['user_logged'] = False
-        result_dict['next_url'] = "/"
         postdata = request.POST.copy()
         form = AuthenticationForm(data=postdata)
         username = postdata['username']
@@ -114,6 +113,7 @@ class AccountService(ABC):
                     auth.login(request, user)
                     logger.debug("[AccountService.process_login_request] : user is authenticated")
                     result_dict['user_logged'] = True
+                    result_dict['next_url'] = request.GET.get('next', '/')
                 
         logger.debug("[AccountService.process_login_request] : finished")
         return result_dict
