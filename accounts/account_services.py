@@ -104,10 +104,7 @@ class AccountService(ABC):
         password = postdata['password']
         logger.info("[AccountService.process_login_request] : starting")
         if form.is_valid():
-            logger.debug("[AccountService.process_login_request] : form is valid Username : {} - Password : {}".format(username,password))
-            user = auth.authenticate(username=username,
-                                    password=password)
-            logger.debug("[AccountService.process_login_request] : user authentication")
+            user = auth.authenticate(username=username, password=password)
             if user is not None:
                 if user.is_active:
                     auth.login(request, user)
@@ -134,10 +131,9 @@ class AccountService(ABC):
         user_form_is_valid = user_form.is_valid()
         account_form_is_valid = account_form.is_valid()
         if user_form_is_valid and account_form_is_valid:
-            logger.info("User creation data is valid")
             user = user_form.save()
             result_dict['user_created'] = True
-            logger.info('User {} has been created', user.username)
+            logger.info(f"User {user.username} has been created")
             user.refresh_from_db()
             account_form = AccountCreationForm(postdata, instance=user.account)
             account_form.full_clean()
@@ -148,9 +144,9 @@ class AccountService(ABC):
         else :
             logger.error("Error on registration below is the errors found in the submitted form : ")
             if not user_form_is_valid:
-                logger.error( "User form data invalid: %s",user_form.errors)
+                logger.error( f"User form data invalid: {user_form.errors}")
             if not account_form_is_valid:
-                logger.error( "Account form data invalid: %s",account_form.errors)
+                logger.error( f"Account form data invalid: {account_form.errors}")
         return result_dict
 
 
