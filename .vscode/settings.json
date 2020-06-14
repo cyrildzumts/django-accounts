@@ -1,7 +1,4 @@
 {
-    "python.venvFolders": [
-        "~/Projects/Python/pay-dev"
-    ],
-    "python.venvPath": "~/Projects/Python/pay-dev",
-    "python.pythonPath": "~/Projects/Python/pay-dev"
+    "python.pythonPath": "../virtual_env/web_env/bin/python",
+    "emmet.includeLanguages": {"django-html":"html"}
 }

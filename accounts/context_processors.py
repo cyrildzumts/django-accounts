@@ -1,4 +1,6 @@
 from accounts.models import Account
+import logging
+logger = logging.getLogger(__name__)
 
 
 def account_context(request):
@@ -10,6 +12,6 @@ def account_context(request):
             account = Account.objects.get(user=request.user)
             context['account'] = account
         except Account.DoesNotExist :
-            pass
+            logging.warning(f"No account found for user {request.user.username}")
         
     return context
