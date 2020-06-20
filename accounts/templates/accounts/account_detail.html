@@ -22,7 +22,7 @@
     <button class="mat-button mat-button-default js-edit-form" data-target="#account-form" ><i class="fas fa-pen"></i>{% trans 'Edit' %}</button>
     <a class="mat-button mat-button-defautl warn" href="#"><i class="fas fa-trash"></i> <span>{% trans 'Delete my Account'%}</span></a>
   </section>
-  <form id="account-form" action="{% url 'accounts:update' account.account_uuid %}" method="post">{% csrf_token %}
+  <form id="account-form form-non-edit" action="{% url 'accounts:update' account.account_uuid %}" method="post">{% csrf_token %}
   <section id="user-infos" class="grid">
     <div class="col-md-12 col-4">
       <div class="mat-input form-group">
