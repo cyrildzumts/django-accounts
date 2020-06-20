@@ -19,7 +19,7 @@
     </div>
   </section>
   <section id="edit-user-bar" class="row">
-    <button class="mat-button mat-button-default js-edit-form" data-target="#account-form" ><i class="fas fa-pen"></i>{% trans 'Edit' %}</button>
+    <button class="mat-button mat-button-default js-edit-form" data-target="#account-form" data-disable="#edit-user-bar"><i class="fas fa-pen"></i>{% trans 'Edit' %}</button>
     <a class="mat-button mat-button-defautl warn" href="#"><i class="fas fa-trash"></i> <span>{% trans 'Delete my Account'%}</span></a>
   </section>
   <form id="account-form" class="form-non-edit" action="{% url 'accounts:update' account.account_uuid %}" method="post">{% csrf_token %}
@@ -61,40 +61,40 @@
     </div>
     <div class="col-md-12 col-4">
       <div class="mat-input form-group">
-        <label>{% trans 'Address'%} : <input class="js-editable" type="text" name="address" value="{{account.address}}"></label>
+        <label>{% trans 'Address' %} : <input class="js-editable" type="text" name="address" value="{{account.address}}"></label>
       </div>
     </div>
     <div class="col-md-12 col-4">
       <div class="mat-input form-group">
-        <label>{% trans 'Zip Code'%} : <input class="js-editable" type="text" name="zip_code" value="{{account.zip_code}}"></label>
+        <label>{% trans 'Zip Code' %} : <input class="js-editable" type="text" name="zip_code" value="{{account.zip_code}}"></label>
       </div>
     </div>
     <div class="col-md-12 col-4">
       <div class="mat-input form-group">
-        <label>{% trans 'Telephone'%} : <input class="js-editable" type="text" name="telefon" value="{{account.telefon}}"></label>
+        <label>{% trans 'Telephone' %} : <input class="js-editable" type="text" name="telefon" value="{{account.telefon}}"></label>
       </div>
     </div>
     <div class="col-md-12 col-4">
       <div class="mat-input form-group">
-        <label>{% trans 'Newsletter Subscribtion'%} : <input class="js-editable" type="checkbox" name="newsletter" value="{{account.newsletter}}"></label>
+        <label>{% trans 'Newsletter Subscribtion' %} : <input class="js-editable" type="checkbox" name="newsletter" value="{{account.newsletter}}"></label>
       </div>
     </div>
   </section>
   <section class="row">
     <div class="col-flex-12">
       <div class="mat-input form-group">
-        <label>{% trans 'Last login'%} : <span>{{account.user.last_login}}</span></label>
+        <label>{% trans 'Last login' %} : <span>{{account.user.last_login}}</span></label>
       </div>
     </div>
     <div class="col-flex-12">
       <div class="mat-input form-group">
-        <label>{% trans 'Date joined'%} : <span>{{account.user.date_joined}}</span></label>
+        <label>{% trans 'Date joined' %} : <span>{{account.user.date_joined}}</span></label>
       </div>
     </div>
   </section>
-  <section>
+  <section id="form-controls">
     <div class="form-group">
-      <button class="mat-button mat-button-default js-form-edit-cancel" data-target="#account-form">{% trans 'Cancel' %}</button>
+      <button type="button" class="mat-button mat-button-default js-form-edit-cancel" data-target="#account-form" data-hide="#form-controls">{% trans 'Cancel' %}</button>
       <button class="mat-button mat-button-default js-form-edit-send" type="submit">{% trans 'Send' %}</button>
     </div>
   </section>
