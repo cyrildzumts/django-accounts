@@ -12,4 +12,91 @@
           <p> {% trans "UUID" %} :  {{account.account_uuid}} </p>
         </div>
 </div>
+<div class="container">
+  <section id="user-pic-wrapper" class="row">
+    <div class="col-md-12 col-4">
+      <img class="img mat-img" src="" alt="{%trans 'User Picture'%}">
+    </div>
+  </section>
+  <section id="edit-user-bar" class="row">
+    <button class="mat-button mat-button-default"><i class="fas fa-pen"></i>{% trans 'Edit' %}</button>
+    <a href="#"><i class="fas fa-delete"></i> <span>{% trans 'Delete my Account'%}</span></a>
+  </section>
+  <form action="{% url 'accounts:update' account.account_uuid %}" method="post">{% csrf_token %}
+  <section id="user-infos" class="row">
+    <div class="col-md-12 col-4">
+      <div class="mat-input form-group">
+        <label>{% trans 'Username'%} : <input type="text" name="username" value="{{account.user.username}}" disabled></label>
+      </div>
+    </div>
+    <div class="col-md-12 col-4">
+      <div class="mat-input form-group">
+        <label>{% trans 'Firstname'%} : <input type="text" name="first_name" value="{{account.user.first_name}}"></label>
+      </div>
+    </div>
+    <div class="col-md-12 col-4">
+      <div class="mat-input form-group">
+        <label>{% trans 'Lastname'%} : <input type="text" name="last_name" value="{{account.user.last_name}}"></label>
+      </div>
+    </div>
+    <div class="col-md-12 col-4">
+      <div class="mat-input form-group">
+        <label>{% trans 'Date of Birth'%} : <input type="text" name="date_of_birth" value="{{account.date_of_birth}}"></label>
+      </div>
+    </div>
+    <div class="col-md-12 col-4">
+      <div class="mat-input form-group">
+        <label>{% trans 'Email'%} : <input type="text" name="email" value="{{account.user.email}}"></label>
+      </div>
+    </div>
+    <div class="col-md-12 col-4">
+      <div class="mat-input form-group">
+        <label>{% trans 'Country'%} : <input type="text" name="country" value="{{account.country}}"></label>
+      </div>
+    </div>
+    <div class="col-md-12 col-4">
+      <div class="mat-input form-group">
+        <label>{% trans 'City'%} : <input type="text" name="city" value="{{account.city}}"></label>
+      </div>
+    </div>
+    <div class="col-md-12 col-4">
+      <div class="mat-input form-group">
+        <label>{% trans 'Address'%} : <input type="text" name="address" value="{{account.address}}"></label>
+      </div>
+    </div>
+    <div class="col-md-12 col-4">
+      <div class="mat-input form-group">
+        <label>{% trans 'Zip Code'%} : <input type="text" name="zip_code" value="{{account.zip_code}}"></label>
+      </div>
+    </div>
+    <div class="col-md-12 col-4">
+      <div class="mat-input form-group">
+        <label>{% trans 'Telephone'%} : <input type="text" name="telefon" value="{{account.telefon}}"></label>
+      </div>
+    </div>
+    <div class="col-md-12 col-4">
+      <div class="mat-input form-group">
+        <label>{% trans 'Newsletter Subscribtion'%} : <input type="checkbox" name="newsletter" value="{{account.newsletter}}"></label>
+      </div>
+    </div>
+    <div class="col-md-12 col-4">
+      <div class="mat-input form-group">
+        <label>{% trans 'Last login'%} : <span>{{account.user.last_login}}</span></label>
+      </div>
+    </div>
+    <div class="col-md-12 col-4">
+      <div class="mat-input form-group">
+        <label>{% trans 'Date joined'%} : <span>{{account.user.date_joined}}</span></label>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="form-group">
+      <button class="mat-button mat-button-default js-form-edit-cancel">{% trans 'Cancel' %}</button>
+      <button class="mat-button mat-button-default js-form-edit-send" type="submit">{% trans 'Send' %}</button>
+    </div>
+  </section>
+  </form>
+
+</div>
 {% endblock MAIN %}
