@@ -16,39 +16,50 @@
   <section id="user-infos" class="grid">
     <div class="col-md-12 col-4">
       <div class="mat-input form-group">
-        <label>{% trans 'Username'%} : <input class="js-non-editable non-editable" type="text" name="username" value="{{account.user.username}}" disabled></label>
+        <label for="username" >{% trans 'Username'%}</label>
+        <input id="username" class="js-non-editable non-editable" type="text" name="username" value="{{account.user.username}}" disabled>
       </div>
       <div class="mat-input form-group">
-        <label>{% trans 'Firstname'%} : <input class="js-editable" type="text" name="first_name" value="{{account.user.first_name}}"></label>
+        <label for="firstname">{% trans 'Firstname'%}</label>
+        <input id="firstname" class="js-editable" type="text" name="first_name" value="{{account.user.first_name}}">
       </div>
       <div class="mat-input form-group">
-        <label>{% trans 'Lastname'%} : <input class="js-editable" type="text" name="last_name" value="{{account.user.last_name}}"></label>
+        <label for="lastname">{% trans 'Lastname'%}</label>
+        <input id="lastname" class="js-editable" type="text" name="last_name" value="{{account.user.last_name}}">
       </div>
       <div class="mat-input form-group">
-        <label>{% trans 'Email'%} : <input class="js-editable" type="text" name="email" value="{{account.user.email}}"></label>
+        <label for="email">{% trans 'Email'%}</label>
+        <input id="email" class="js-editable" type="text" name="email" value="{{account.user.email}}">
       </div>
       <div class="mat-input form-group">
-        <label>{% trans 'Date of Birth'%} : <input class="js-editable" type="text" name="date_of_birth" value="{{account.date_of_birth}}"></label>
+        <label for="date_of_birth">{% trans 'Date of Birth'%}</label>
+        <input id="date_of_birth" class="js-editable" type="text" name="date_of_birth" value="{{account.date_of_birth}}">
       </div>
     </div>
     <div class="col-md-12 col-4">
       <div class="mat-input form-group">
-        <label>{% trans 'Country'%} : <input class="js-editable" type="text" name="country" value="{{account.country}}"></label>
+        <label for="country">{% trans 'Country'%}</label>
+        <input id="country" class="js-editable" type="text" name="country" value="{{account.country}}">
       </div>
       <div class="mat-input form-group">
-        <label>{% trans 'City'%} : <input class="js-editable" type="text" name="city" value="{{account.city}}"></label>
+        <label for="city">{% trans 'City'%}</label>
+        <input id="city" class="js-editable" type="text" name="city" value="{{account.city}}">
       </div>
       <div class="mat-input form-group">
-        <label>{% trans 'Address' %} : <input class="js-editable" type="text" name="address" value="{{account.address}}"></label>
+        <label for="address">{% trans 'Address' %}</label>
+        <input id="address" class="js-editable" type="text" name="address" value="{{account.address}}">
       </div>
       <div class="mat-input form-group">
-        <label>{% trans 'Zip Code' %} : <input class="js-editable" type="text" name="zip_code" value="{{account.zip_code}}"></label>
+        <label for="zip_code">{% trans 'Zip Code' %}</label>
+        <input id="zip_code" class="js-editable" type="text" name="zip_code" value="{{account.zip_code}}">
       </div>
       <div class="mat-input form-group">
-        <label>{% trans 'Phone' %} : <input class="js-editable" type="text" name="telefon" value="{{account.telefon}}"></label>
+        <label for="telefon">{% trans 'Phone' %}</label>
+        <input id="telefon" class="js-editable" type="text" name="telefon" value="{{account.telefon}}">
       </div>
       <div class="mat-input form-group">
-        <label>{% trans 'Newsletter Subscribtion' %} : <input class="js-editable" type="checkbox" name="newsletter" value="{{account.newsletter}}" {% if account.newsletter %}checked {% endif %} disabled></label>
+        <label for="newsletter">{% trans 'Newsletter Subscribtion' %}</label>
+        <input id="newsletter" class="js-editable" type="checkbox" name="newsletter" value="{{account.newsletter}}" {% if account.newsletter %}checked {% endif %} disabled>
       </div>
     </div>
     <div class="row">
