@@ -15,62 +15,64 @@
   <form id="account-form" class="form-non-edit" action="{% url 'accounts:update' account.account_uuid %}" method="post">{% csrf_token %}
   <section id="user-infos" class="grid">
     <div class="col-md-12 col-4">
-      <div class="mat-input form-group">
+      <div class="mat-input">
         <label for="username" >{% trans 'Username'%}</label>
         <input id="username" class="js-non-editable non-editable" type="text" name="username" value="{{account.user.username}}" disabled>
       </div>
-      <div class="mat-input form-group">
+      <div class="mat-input">
         <label for="firstname">{% trans 'Firstname'%}</label>
         <input id="firstname" class="js-editable" type="text" name="first_name" value="{{account.user.first_name}}">
       </div>
-      <div class="mat-input form-group">
+      <div class="mat-input">
         <label for="lastname">{% trans 'Lastname'%}</label>
         <input id="lastname" class="js-editable" type="text" name="last_name" value="{{account.user.last_name}}">
       </div>
-      <div class="mat-input form-group">
+      <div class="mat-input">
         <label for="email">{% trans 'Email'%}</label>
         <input id="email" class="js-editable" type="text" name="email" value="{{account.user.email}}">
       </div>
-      <div class="mat-input form-group">
+      <div class="mat-input">
         <label for="date_of_birth">{% trans 'Date of Birth'%}</label>
         <input id="date_of_birth" class="js-editable" type="text" name="date_of_birth" value="{{account.date_of_birth}}">
       </div>
     </div>
     <div class="col-md-12 col-4">
-      <div class="mat-input form-group">
+      <div class="mat-input">
         <label for="country">{% trans 'Country'%}</label>
         <input id="country" class="js-editable" type="text" name="country" value="{{account.country}}">
       </div>
-      <div class="mat-input form-group">
+      <div class="mat-input">
         <label for="city">{% trans 'City'%}</label>
         <input id="city" class="js-editable" type="text" name="city" value="{{account.city}}">
       </div>
-      <div class="mat-input form-group">
+      <div class="mat-input">
         <label for="address">{% trans 'Address' %}</label>
         <input id="address" class="js-editable" type="text" name="address" value="{{account.address}}">
       </div>
-      <div class="mat-input form-group">
+      <div class="mat-input">
         <label for="zip_code">{% trans 'Zip Code' %}</label>
         <input id="zip_code" class="js-editable" type="text" name="zip_code" value="{{account.zip_code}}">
       </div>
-      <div class="mat-input form-group">
+      <div class="mat-input">
         <label for="telefon">{% trans 'Phone' %}</label>
         <input id="telefon" class="js-editable" type="text" name="telefon" value="{{account.telefon}}">
       </div>
-      <div class="mat-input form-group">
+      <div class="mat-input">
         <label for="newsletter">{% trans 'Newsletter Subscribtion' %}</label>
         <input id="newsletter" class="js-editable" type="checkbox" name="newsletter" value="{{account.newsletter}}" {% if account.newsletter %}checked {% endif %} disabled>
       </div>
     </div>
     <div class="row">
       <div class="col-flex-12">
-        <div class="mat-input form-group">
-          <label>{% trans 'Last login' %} : <span>{{account.user.last_login}}</span></label>
+        <div class="mat-input">
+          <label>{% trans 'Last login' %}</label>
+          <span>{{account.user.last_login}}</span>
         </div>
       </div>
       <div class="col-flex-12">
-        <div class="mat-input form-group">
-          <label>{% trans 'Date joined' %} : <span>{{account.user.date_joined}}</span></label>
+        <div class="mat-input">
+          <label>{% trans 'Date joined' %}</label>
+          <span>{{account.user.date_joined}}</span>
         </div>
       </div>
     </div>
