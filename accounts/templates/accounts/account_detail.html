@@ -48,7 +48,7 @@
         <label>{% trans 'Phone' %} : <input class="js-editable" type="text" name="telefon" value="{{account.telefon}}"></label>
       </div>
       <div class="mat-input form-group">
-        <label>{% trans 'Newsletter Subscribtion' %} : <input class="js-editable" type="checkbox" name="newsletter" value="{{account.newsletter}}"></label>
+        <label>{% trans 'Newsletter Subscribtion' %} : <input class="js-editable" type="checkbox" name="newsletter" value="{{account.newsletter}}" {% if account.newsletter %}checked {% endif %} disabled></label>
       </div>
     </div>
     <div class="row">
