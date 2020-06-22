@@ -1,20 +1,23 @@
 {% load i18n %} 
 
 <div class="responsive">
-    <div class="form-group">
+    <div class="mat-input">
             
     </div>
     <form id="idcard-form" class="idcard-form form" name="idcard" action="{% url 'accounts:upload_idcard' %}" enctype="multipart/form-data" method="POST">{% csrf_token %}
         <input type="hidden" name="user" value="{{request.user.pk}}">
-        <div class="form-group">
-            <input type="number" name="card_number" id="card_number" placeholder="{% trans 'Enter your ID Card number' %}">
-            <label for="image">{% trans "Select your ID card image :" %}</label>
+        <div class="mat-input">
+            <label for="card_number">{% trans "ID Number" %}</label>
+            <input type="text" name="card_number" id="card_number">
+        </div>
+        <div class="mat-input">
+            <label for="image">{% trans "ID Image File" %}</label>
             <input type="file" name="image" id="image">
             
         </div>
-        <div class="form-group row">
-            <button class="button" type="submit">{% trans "Send" %}</button>
-            <a class="button link" href="{%url 'accounts:account'%}">{% trans "Cancel" %}</a>
+        <div class="form-group">
+            <a class="mat-button mat-button-outlined" href="{%url 'accounts:account'%}">{% trans "Cancel" %}</a>
+            <button class="mat-button mat-button-default" type="submit">{% trans "Send" %}</button>
         </div>
     </form>
 </div>
