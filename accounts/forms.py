@@ -42,7 +42,7 @@ class UpdateAccountForm(forms.ModelForm):
 class AccountForm(forms.ModelForm):
     class Meta:
         model = Account
-        exclude = ['is_active_account', 'created_at', 'balance', 'policy']
+        exclude = ['account_type', 'is_active_account', 'created_at']
 
 
 
@@ -103,7 +103,7 @@ class RegistrationForm(forms.ModelForm):
                                label="Email")
     class Meta:
         model = Account
-        fields = ['account_type','address','zip_code', 'date_of_birth','country', 'city','province', 'telefon', 'newsletter', 
+        fields = ['account_type', 'telefon', 
             'password1', 'password2', 'username', 'first_name', 'last_name', 'email'
         ]
 
