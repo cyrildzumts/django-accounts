@@ -1,16 +1,15 @@
-{% extends "base.html"%}
+{% extends "site_account_base.html"%}
 {% load static %}
 {% load i18n %} 
 {% block META_REDIRECT %}
         
 {% endblock META_REDIRECT %}
 
-{% block HEADER_BANNER %}
-  <div class="row">
-        <div class="col-md-12 col-6">
-        </div>
-  </div>
-{% endblock HEADER_BANNER %}
+{% block  HEADER_BANNER_TITLE %}
+<div class="flex">
+    <h4>{% trans "Account details" %}</h4>
+</div>
+{% endblock HEADER_BANNER_TITLE %}
 
 {% block MAIN %}
 
