@@ -8,6 +8,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
 from django.contrib.auth import login as django_login, logout as django_logout, update_session_auth_hash
+from accounts import constants as Account_Constants
 from accounts.models import Account
 from accounts.forms import AccountForm, AccountCreationForm, UserSignUpForm, UpdateAccountForm
 from django.forms.models import inlineformset_factory
@@ -85,7 +86,8 @@ def register(request):
         'template_name': template_name,
         #'form': form,
         'account_form' : account_form,
-        'user_form': user_form
+        'user_form': user_form,
+        'ACCOUNT_TYPE': Account_Constants.ACCOUNT_TYPE
     }
     return render(request, template_name, context)
 
