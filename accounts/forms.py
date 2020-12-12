@@ -36,7 +36,7 @@ class UpdateAccountForm(forms.ModelForm):
     
     class Meta:
         model = Account
-        fields = ("city", "country","province", "address", "telefon", "zip_code", "newsletter",)
+        fields = ("telefon","newsletter",)
 
 
 class AccountForm(forms.ModelForm):
@@ -81,7 +81,7 @@ class AccountCreationForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields = ['account_type','address','zip_code', 'date_of_birth','country', 'city','province', 'telefon', 'newsletter']
+        fields = ['account_type', 'telefon', 'newsletter']
     
 
 
