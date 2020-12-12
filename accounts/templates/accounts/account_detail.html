@@ -8,7 +8,7 @@
       <img class="img mat-img" src="" alt="{%trans 'User Picture'%}">
     </div>
   </section>
-  <section id="edit-user-bar" class="row">
+  <section id="edit-user-bar" class="actions">
     <button class="mat-button mat-button-default js-edit-form" data-target="#account-form" data-disable="#edit-user-bar"><i class="fas fa-pen"></i>{% trans 'Edit' %}</button>
     <a class="mat-button mat-button-defautl warn" href="#"><i class="fas fa-trash"></i> <span>{% trans 'Delete my Account'%}</span></a>
   </section>
@@ -38,22 +38,6 @@
     </div>
     <div class="col-md-12 col-4">
       <div class="mat-input">
-        <label for="country">{% trans 'Country'%}</label>
-        <input id="country" class="js-editable" type="text" name="country" value="{{account.country}}">
-      </div>
-      <div class="mat-input">
-        <label for="city">{% trans 'City'%}</label>
-        <input id="city" class="js-editable" type="text" name="city" value="{{account.city}}">
-      </div>
-      <div class="mat-input">
-        <label for="address">{% trans 'Address' %}</label>
-        <input id="address" class="js-editable" type="text" name="address" value="{{account.address}}">
-      </div>
-      <div class="mat-input">
-        <label for="zip_code">{% trans 'Zip Code' %}</label>
-        <input id="zip_code" class="js-editable" type="text" name="zip_code" value="{{account.zip_code}}">
-      </div>
-      <div class="mat-input">
         <label for="telefon">{% trans 'Phone' %}</label>
         <input id="telefon" class="js-editable" type="text" name="telefon" value="{{account.telefon}}">
       </div>
@@ -79,7 +63,7 @@
   </section>
 
   <section id="form-controls">
-    <div class="form-group">
+    <div class="actions">
       <button type="button" class="mat-button mat-button-default js-form-edit-cancel" data-target="#account-form" data-hide="#form-controls">{% trans 'Cancel' %}</button>
       <button class="mat-button mat-button-default js-form-edit-send" type="submit">{% trans 'Send' %}</button>
     </div>
