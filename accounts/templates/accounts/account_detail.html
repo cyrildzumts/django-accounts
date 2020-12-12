@@ -46,14 +46,14 @@
         <input id="newsletter" class="js-editable" type="checkbox" name="newsletter" value="{{account.newsletter}}" {% if account.newsletter %}checked {% endif %} disabled>
       </div>
     </div>
-    <div class="row">
-      <div class="col-flex-12">
+    <div class="flex">
+      <div class="col-xs-12 col-6">
         <div class="mat-input">
           <label>{% trans 'Last login' %}</label>
           <span>{{account.user.last_login}}</span>
         </div>
       </div>
-      <div class="col-flex-12">
+      <div class="col-xs-12 col-6">
         <div class="mat-input">
           <label>{% trans 'Date joined' %}</label>
           <span>{{account.user.date_joined}}</span>
