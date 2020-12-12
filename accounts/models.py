@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
+from accounts import constants as ACCOUNT_CONSTANTS
 import uuid
 
 
@@ -16,17 +17,6 @@ class Account(models.Model):
     The Account Model extends the User Model with a profile.
     This model provides extra information to identify a user.
     """
-    ACCOUNT_TYPE = (
-        ('A', 'Admin'),
-        ('B', 'Business'),
-        ('D', 'Developer'),
-        ('M', 'Manager'),
-        ('P', 'Privé'),
-        ('S', 'Staff'),
-        ('R', 'Recharge'),
-        ('X', 'PAY ACCOUNT'),
-    )
-
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=ident_file_path,null=True, blank=True)
     date_of_birth = models.DateField(blank=True, null=True)
@@ -41,7 +31,7 @@ class Account(models.Model):
     balance = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
-    account_type = models.CharField(max_length=1, default='P', blank=False, null=False, choices=ACCOUNT_TYPE)
+    account_type = models.models.IntegerField(max_length=1, default=ACCOUNT_CONSTANTS.ACCOUNT_PRIVATE, blank=True, null=True, choices=ACCOUNT_CONSTANTS.ACCOUNT_TYPE)
     account_uuid = models.UUIDField(default=uuid.uuid4, editable=False, blank=True, null=True)
     email_validation_token = models.UUIDField(blank=True, null=True)
     email_validated = models.BooleanField(default=False, blank=True, null=True)
