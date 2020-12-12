@@ -42,7 +42,7 @@ class UpdateAccountForm(forms.ModelForm):
 class AccountForm(forms.ModelForm):
     class Meta:
         model = Account
-        exclude = ['account_type', 'is_active_account', 'created_at']
+        exclude = ['account_type', 'is_active', 'created_at']
 
 
 

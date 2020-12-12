@@ -22,7 +22,7 @@ class Account(models.Model):
     date_of_birth = models.DateField(blank=True, null=True)
     telefon = models.CharField(default='', max_length=15, null=True, blank=True)
     newsletter = models.BooleanField(default=False)
-    is_active_account = models.BooleanField(default=True, blank=True, null=True)
+    is_active = models.BooleanField(default=False, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     account_type = models.IntegerField(default=ACCOUNT_CONSTANTS.ACCOUNT_PRIVATE, blank=True, null=True, choices=ACCOUNT_CONSTANTS.ACCOUNT_TYPE)
