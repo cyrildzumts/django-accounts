@@ -14,7 +14,7 @@ class AccountInline(admin.StackedInline):
 
 class AccountAdmin(admin.ModelAdmin):
     inlines = [AccountInline]
-    #list_display = ['balance', 'country', 'city', 'telefon', 'created_by']
+    #list_display = [ 'telefon', 'created_by']
     def get_inline_instances(self, request, obj=None):
         if not obj:
             return list()
