@@ -28,6 +28,7 @@ class Account(models.Model):
     account_uuid = models.UUIDField(default=uuid.uuid4, editable=False, blank=True, null=True)
     email_validation_token = models.UUIDField(blank=True, null=True)
     email_validated = models.BooleanField(default=False, blank=True, null=True)
+    is_active = models.BooleanField(default=False, blank=True, null=True)
     created_by = models.ForeignKey(User, related_name="created_accounts", null=True,blank=True, on_delete=models.SET_NULL)
     reset_token = models.CharField(max_length=8, blank=True, null=True)
 
