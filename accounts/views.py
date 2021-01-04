@@ -70,9 +70,9 @@ def register(request):
         result = AccountService.process_registration_request(request)
         if result['user_created']:
             messages.add_message(request, messages.SUCCESS, 'Your Account has been created')
-            return HttpResponseRedirect(result['next_url'])
+            return redirect("accounts:registration-complete")
         else:
-            messages.add_message(request, messages.ERROR, 'Your Account could not be created. Pleas checks the form and try again')
+            messages.add_message(request, messages.ERROR, 'Your Account could not be created. Please checks the form and try again')
             account_form = AccountCreationForm(request.POST)
             user_form = UserSignUpForm(request.POST)
 
@@ -169,6 +169,20 @@ def password_change_done_views(request):
     }
     return render(request, template_name, context)
 
+
+
+def registration_complete(request):
+    """ 
+        This view is called when the user has changed its password
+    """
+    template_name = "accounts/registration/registration_complete.html"
+    page_title = _('Registration Confirmation')
+    
+    context = {
+        'page_title': page_title,
+        'template_name': template_name
+    }
+    return render(request, template_name, context)
 
 
 def password_reset_views(request):

@@ -1,7 +1,5 @@
 celery
 Django
-django-crispy-forms==1.8.0
+django-crispy-forms
 djangorestframework
-graphviz==0.5.2
-Pillow>=6.2.2
-psycopg2-binary==2.8.4
+psycopg2-binary
