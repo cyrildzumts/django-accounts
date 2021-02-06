@@ -42,22 +42,18 @@
         <label for="date_of_birth">{% trans 'Date of Birth'%}</label>
         <input id="date_of_birth" class="js-editable" type="text" name="date_of_birth" value="{{account.date_of_birth}}">
       </div>
+      <div class="mat-input">
+          <label for="telefon">{% trans 'Phone' %}</label>
+          <input id="telefon" class="js-editable" type="text" name="telefon" value="{{account.telefon}}">
+      </div>
+      <div class="mat-input">
+          <label for="newsletter">{% trans 'Newsletter Subscribtion' %}</label>
+          <input id="newsletter" class="js-editable" type="checkbox" name="newsletter" value="{{account.newsletter}}" {% if account.newsletter %}checked {% endif %} disabled>
+      </div>
     </div>
     </div>
-    <div class="col-m-12 col-4">
-        <div class="mat-box">
-        
-            <div class="mat-input">
-                <label for="telefon">{% trans 'Phone' %}</label>
-                <input id="telefon" class="js-editable" type="text" name="telefon" value="{{account.telefon}}">
-            </div>
-            <div class="mat-input">
-                <label for="newsletter">{% trans 'Newsletter Subscribtion' %}</label>
-                <input id="newsletter" class="js-editable" type="checkbox" name="newsletter" value="{{account.newsletter}}" {% if account.newsletter %}checked {% endif %} disabled>
-            </div>
-        </div>
-    </div>
-    <div class="flex">
+
+    <div class="full">
       <div class="col-m-12 col-6">
         <div class="mat-box">
             <div class="mat-input">
@@ -78,12 +74,9 @@
     </div>
   </section>
     <div class="actions">
-    <button type="button" class="mat-button mat-button-default js-form-edit-cancel" data-target="#account-form" data-hide="#form-controls">{% trans 'Cancel' %}</button>
-    <button class="mat-button mat-button-default js-form-edit-send" type="submit">{% trans 'Send' %}</button>
+      <button type="button" class="mat-button mat-button-default js-form-edit-cancel" data-target="#account-form" data-hide="#form-controls">{% trans 'Cancel' %}</button>
+      <button class="mat-button mat-button-default js-form-edit-send" type="submit">{% trans 'Send' %}</button>
     </div>
-  <section id="form-controls">
-    
-  </section>
   </form>
   </div>
 </div>
