@@ -40,11 +40,11 @@
       </div>
       <div class="mat-input">
         <label for="date_of_birth">{% trans 'Date of Birth'%}</label>
-        <input id="date_of_birth" class="js-editable" type="text" name="date_of_birth" value="{{account.date_of_birth}}">
+        <input id="date_of_birth" class="js-editable" type="text" name="date_of_birth" value="{{account.date_of_birth|default_if_none:''}}">
       </div>
       <div class="mat-input">
           <label for="telefon">{% trans 'Phone' %}</label>
-          <input id="telefon" class="js-editable" type="text" name="telefon" value="{{account.telefon}}">
+          <input id="telefon" class="js-editable" type="text" name="telefon" value="{{account.telefon|default_if_none:''}}">
       </div>
       <div class="mat-input">
           <label for="newsletter">{% trans 'Newsletter Subscribtion' %}</label>
