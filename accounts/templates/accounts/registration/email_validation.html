@@ -27,7 +27,7 @@
 {% else %}
 {% blocktrans %}Sorry !  Your email address could not be verified.{% endblocktrans %}
 {% blocktrans %}Click on this link to get a new activation link {% endblocktrans %} :
-<a class="mat-button mat-button-text" href="{% url 'accounts:send-validation' %}">{% trans "Send me a Validation link" %}</a>
+<a class="mat-button mat-button-text" href="{% url 'accounts:send-validation' account.account_uuid %}">{% trans "Send me a Validation link" %}</a>
 <a class="mat-button mat-button-outlined" href="{% url 'home' %}">{% trans "Home Page" %}</a>
 {% endif %}
 

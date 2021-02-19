@@ -95,7 +95,7 @@ def register(request):
 
 def send_validation(request, account_uuid):
     template_name = "accounts/registration/send_validation.html"
-    account= AccountService.get_account(account_uuid)
+    account = get_object_or_404(Account, account_uuid=account_uuid)
     email_sent = False
     queryset = Account.objects.filter(user=request.user, account_uuid=account_uuid, email_validated=False)
     if not queryset.exists():
@@ -133,9 +133,10 @@ def email_validation(request, account_uuid=None, token=None):
 
     template_name = "accounts/registration/email_validation.html"
     page_title = "Email Validation"
+    account = get_object_or_404(Account, account_uuid=account_uuid, token=token)
     result = AccountService.validate_email(account_uuid=account_uuid, token=token)
     context = {
-        'account'   : result['account'],
+        'account'   : account,
         'validated' : result['validated'],
         'msg'       : result['message'],
         'page_title': page_title
