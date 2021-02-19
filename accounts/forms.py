@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from accounts.models import Account
 from django.contrib.admin.widgets import AdminDateWidget
+from django.core.exceptions import ValidationError
 import datetime
 
 class UserForm(forms.ModelForm):
@@ -75,6 +76,12 @@ class UserSignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name','password1', 'password2','email']
+    
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("This email is already in use")
+        return email
 
 
 class AccountCreationForm(forms.ModelForm):

@@ -3,9 +3,14 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
+from django.utils import timezone
 from accounts import constants as ACCOUNT_CONSTANTS
 import uuid
+import secrets
+import datetime
 
+def get_activation_token():
+    return secrets.token_urlsafe(ACCOUNT_CONSTANTS.TOKEN_LENGTH)
 
 def ident_file_path(instance, filename):
     file_ext = filename.split(".")[-1]
@@ -26,11 +31,12 @@ class Account(models.Model):
     modified_at = models.DateTimeField(auto_now=True)
     account_type = models.IntegerField(default=ACCOUNT_CONSTANTS.ACCOUNT_PRIVATE, blank=True, null=True, choices=ACCOUNT_CONSTANTS.ACCOUNT_TYPE)
     account_uuid = models.UUIDField(default=uuid.uuid4, editable=False, blank=True, null=True)
-    email_validation_token = models.UUIDField(blank=True, null=True)
+    email_validation_token = models.CharField(max_length=128, default=get_activation_token, blank=True, null=True)
+    validation_token_expire = models.DateTimeField(blank=True, null=True)
     email_validated = models.BooleanField(default=False, blank=True, null=True)
     is_active = models.BooleanField(default=False, blank=True, null=True)
     created_by = models.ForeignKey(User, related_name="created_accounts", null=True,blank=True, on_delete=models.SET_NULL)
-    reset_token = models.CharField(max_length=8, blank=True, null=True)
+    reset_token = models.CharField(max_length=8,blank=True, null=True)
 
 
     class Meta:
@@ -78,8 +84,7 @@ def create_or_update_account(sender,instance, created,  **kwargs):
         # if the user hasn't an associated account profile then we create an Profile account.
         #
         if not Account.objects.filter(user=instance).exists():
-            print("This user is not beeing created by admin")
-            Account.objects.create(user=instance)
+            Account.objects.create({'user' : instance, 'validation_token_expire' : timezone.now() + datetime.timedelta(hours=ACCOUNT_CONSTANTS.ACTIVATION_DELAY_HOURS)})
             print("Account instance created")
     return
         

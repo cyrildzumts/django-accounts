@@ -3,12 +3,13 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponseForbidden
 from django.contrib import auth, messages
 from django.template import RequestContext
+from django.utils import timezone
 from django.utils.translation import gettext as _
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
 from django.contrib.auth import login as django_login, logout as django_logout, update_session_auth_hash
-from accounts import constants as Account_Constants
+from accounts import constants as Account_Constants, tokens_gen, account_services
 from accounts.models import Account
 from accounts.forms import AccountForm, AccountCreationForm, UserSignUpForm, UpdateAccountForm
 from django.forms.models import inlineformset_factory
@@ -17,6 +18,7 @@ from accounts.account_services import AccountService
 from django.urls import reverse_lazy
 from django.views.generic.edit import  UpdateView
 from django.db.models import F, Q
+from django.conf import settings
 import logging
 
 logger = logging.getLogger('accounts')
@@ -94,14 +96,30 @@ def register(request):
 def send_validation(request, account_uuid):
     template_name = "accounts/registration/send_validation.html"
     account= AccountService.get_account(account_uuid)
-    token, validated = AccountService.generate_email_validation_token(account.uuid)
+    email_sent = False
+    queryset = Account.objects.filter(user=request.user, account_uuid=account_uuid, email_validated=False)
+    if not queryset.exists():
+        token= AccountService.generate_email_validation_token()
+        expiration_date = AccountService.get_token_expire_time()
+        queryset.update(email_validation_token=token, validation_token_expire=expiration_date)
+        email_context = {
+            'template_name': settings.DJANGO_VALIDATION_EMAIL_TEMPLATE,
+            'title': 'Validation de votre adresse mail',
+            'recipient_email': account.user.email,
+            'context':{
+                'SITE_NAME': settings.SITE_NAME,
+                'SITE_HOST': settings.SITE_HOST,
+                'FULL_NAME': account.user.get_full_name(),
+                'account' : account
+            }
+        }
+        account_services.send_validation_mail(email_context)
+        email_sent = True
+        
     context = {
-        'account'   : account,
-        'token'     : token,
-        'account_uuid'  : account_uuid
+        'account': account,
+        'email_sent': email_sent
     }
-    if validated:
-        return redirect('accounts:validation_sent', kwargs={'info': context})
 
     return render(request, template_name, context)
 
@@ -115,10 +133,11 @@ def email_validation(request, account_uuid=None, token=None):
 
     template_name = "accounts/registration/email_validation.html"
     page_title = "Email Validation"
-    account, validated = AccountService.validate_email(account_uuid=account_uuid, token=token)
+    result = AccountService.validate_email(account_uuid=account_uuid, token=token)
     context = {
-        'account'   : account,
-        'validated' : validated,
+        'account'   : result['account'],
+        'validated' : result['validated'],
+        'msg'       : result['message'],
         'page_title': page_title
     }
     return render(request, template_name, context)
@@ -177,7 +196,18 @@ def registration_complete(request):
     """
     template_name = "accounts/registration/registration_complete.html"
     page_title = _('Registration Confirmation')
-    
+    email_context = {
+        'template_name': settings.DJANGO_VALIDATION_EMAIL_TEMPLATE,
+        'title': 'Validation de votre adresse mail',
+        'recipient_email': request.user.email,
+        'context':{
+            'SITE_NAME': settings.SITE_NAME,
+            'SITE_HOST': settings.SITE_HOST,
+            'FULL_NAME': request.user.get_full_name(),
+            'account' : request.user.account
+        }
+    }
+    account_services.send_validation_mail(email_context)
     context = {
         'page_title': page_title,
         'template_name': template_name

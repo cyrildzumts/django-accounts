@@ -7,13 +7,19 @@ from django.db import IntegrityError
 from abc import ABCMeta, ABC
 from accounts.forms import  RegistrationForm, AuthenticationForm, AccountForm, UserSignUpForm, AccountCreationForm
 from accounts.models import Account
+from accounts import constants
 from django.db.models import F, Q
 from django.apps import apps
 from django.forms import modelform_factory
+from django.utils import timezone
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 import sys
 import logging
 import numbers
 import uuid
+import secrets
+import datetime
 
 logger = logging.getLogger('accounts')
 
@@ -132,12 +138,15 @@ class AccountService(ABC):
         account_form_is_valid = account_form.is_valid()
         if user_form_is_valid and account_form_is_valid:
             user = user_form.save()
+            User.objects.filter(id=user.id).update(is_active=False)
+
             result_dict['user_created'] = True
             logger.info(f"User {user.username} has been created")
             user.refresh_from_db()
             account_form = AccountCreationForm(postdata, instance=user.account)
             account_form.full_clean()
-            account_form.save()
+            account = account_form.save()
+            result_dict['account'] = account
             result_dict['account_created'] = True
             logger.debug("User Account creation succesfull")
                 
@@ -151,20 +160,35 @@ class AccountService(ABC):
 
 
     @staticmethod
-    def generate_email_validation_token(account_uuid=None):
-        token = uuid.uuid4()
-        validated = 1 == Account.objects.filter(account_uuid=account_uuid).update(email_activation_tocken=token)
-        return token, validated
+    def generate_email_validation_token():
+        token = secrets.token_urlsafe(constants.TOKEN_LENGTH)
+        return token
+    
+    @staticmethod
+    def get_token_expire_time():
+        return timezone.now() +  datetime.timedelta(hours=constants.ACTIVATION_DELAY_HOURS)
+
     @staticmethod
     def validate_email(account_uuid, token):
         validated = False
         account = None
+        msg = None
+        now = timezone.now()
         if account_uuid and token:
             account = AccountService.get_account(account_uuid)
             if account and token and account.email_validation_token == token :
-                updated = Account.objects.filter(pk=account.pk, email_validation_token=token).update(email_validated=True, email_validated_token=None)
-                validated = updated == 1
-        return account, validated
+                if account.validation_token_expire < now or account.validation_token_expire == now :
+                    validated = Account.objects.filter(pk=account.pk, email_validation_token=token).update(is_active=True,email_validated=True, email_validated_token=None) == 1
+                    User.objects.filter(id=account.user.id).update(is_active=True)
+                    msg = "Email validated"
+                else:
+                    msg = "Token has expired"
+            else:
+                msg = "Invalid data"
+        else:
+            msg = "Invalid data. Account or token missing"
+
+        return {'account':account, 'validated' : validated, 'message' : msg}
 
     @staticmethod
     def create_account(accountdata=None, userdata=None):
@@ -183,6 +207,29 @@ class AccountService(ABC):
                 pass
 
         return created
+
+    
+
+def send_validation_mail(email_context):
+    if email_context is not None and isinstance(email_context, dict):
+        logger.debug("email_context available. Running send_mail now")
+        try:
+            template_name = email_context['template_name']
+        except KeyError as e:
+            logger.error(f"send_validation : template_name not available. Mail not send. email_context : {email_context}")
+            return
+        html_message = render_to_string(template_name, email_context['context'])
+        send_mail(
+            email_context['title'],
+            None,
+            settings.DEFAULT_FROM_EMAIL,
+            [email_context['recipient_email']],
+            html_message=html_message
+        )
+    else:
+        logger.warn(f"send_validation: email_context missing or is not a dict. email_context : {email_context}")
+
+    
 
 
     

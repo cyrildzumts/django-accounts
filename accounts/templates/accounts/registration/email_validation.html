@@ -21,11 +21,11 @@
 
 {% load i18n %}{% autoescape off %}
 {% if validated %}
-{% blocktrans %}Great !  Your email address has been verified. You can now use this site.{{ site_name }}.{% endblocktrans %}
+{% blocktrans %}Great ! Your email address has been verified. You can now log to your account.{% endblocktrans %}
 {% blocktrans %}Go to your Account by folowing this Link {% endblocktrans %} :
 <a href="{% url 'accounts:account' %}">{% trans "My Account" %}</a>
 {% else %}
-{% blocktrans %}Soory !  Your email address could not be verified.{% endblocktrans %}
+{% blocktrans %}Sorry !  Your email address could not be verified.{% endblocktrans %}
 {% blocktrans %}Click on this link to get a new activation link {% endblocktrans %} :
 <a class="mat-button mat-button-text" href="{% url 'accounts:send-validation' %}">{% trans "Send me a Validation link" %}</a>
 <a class="mat-button mat-button-outlined" href="{% url 'home' %}">{% trans "Home Page" %}</a>
