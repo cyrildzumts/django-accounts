@@ -182,16 +182,16 @@ class AccountService(ABC):
                     validated = Account.objects.filter(pk=account.pk, email_validation_token=token).update(is_active=True,email_validated=True, email_validated_token=None) == 1
                     User.objects.filter(id=account.user.id).update(is_active=True)
                     msg = "Email validated"
-                    logger.debug("Account {account} validated.")
+                    logger.debug(f"Account {account} validated.")
                 else:
                     msg = "Token has expired"
-                    logger.warn("Account {account} not validated. {msg}")
+                    logger.warn(f"Account {account} not validated. {msg}")
             else:
                 msg = "Invalid data"
-                logger.warn("Account {account} not validated. {msg}")
+                logger.warn(f"Account {account} not validated. {msg}")
         else:
             msg = "Invalid data. Account or token missing"
-            logger.warn("Account {account} not validated. {msg}")
+            logger.warn(f"Account {account} not validated. {msg}")
 
         return {'account':account, 'validated' : validated, 'message' : msg}
 
