@@ -208,7 +208,12 @@ class AccountService(ABC):
 
         return created
 
-    
+
+def get_validation_url(account):
+    if isinstance(account, Account):
+        return account.get_validation_url()
+    return None
+
 
 def send_validation_mail(email_context):
     if email_context is not None and isinstance(email_context, dict):

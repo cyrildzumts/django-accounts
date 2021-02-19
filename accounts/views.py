@@ -110,7 +110,7 @@ def send_validation(request, account_uuid):
                 'SITE_NAME': settings.SITE_NAME,
                 'SITE_HOST': settings.SITE_HOST,
                 'FULL_NAME': account.user.get_full_name(),
-                'account' : account
+                'validation_url' : settings.SITE_HOST.join(account.get_validation_url()) 
             }
         }
         account_services.send_validation_mail(email_context)
@@ -204,7 +204,7 @@ def registration_complete(request):
             'SITE_NAME': settings.SITE_NAME,
             'SITE_HOST': settings.SITE_HOST,
             'FULL_NAME': request.user.get_full_name(),
-            'account' : request.user.account
+            'validation_url' : settings.SITE_HOST.join(request.user.account.get_validation_url())
         }
     }
     account_services.send_validation_mail(email_context)
