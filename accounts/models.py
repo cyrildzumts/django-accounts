@@ -84,7 +84,7 @@ def create_or_update_account(sender,instance, created,  **kwargs):
         # if the user hasn't an associated account profile then we create an Profile account.
         #
         if not Account.objects.filter(user=instance).exists():
-            Account.objects.create({'user' : instance, 'validation_token_expire' : timezone.now() + datetime.timedelta(hours=ACCOUNT_CONSTANTS.ACTIVATION_DELAY_HOURS)})
+            Account.objects.create(user=instance, validation_token_expire=timezone.now() + datetime.timedelta(hours=ACCOUNT_CONSTANTS.ACTIVATION_DELAY_HOURS))
             print("Account instance created")
     return
         
