@@ -57,7 +57,7 @@ class Account(models.Model):
         return reverse('accounts:account-detail', kwargs={'account_uuid':self.account_uuid})
     
     def get_validation_url(self):
-        return reverse('accounts:email-validation', kwargs={'account_uuid':self.account_uuid, 'email_validation_token': self.email_validation_token})
+        return reverse('accounts:email-validation', kwargs={'account_uuid':self.account_uuid, 'token': self.email_validation_token})
 
     def full_name(self):
         return self.user.get_full_name()
