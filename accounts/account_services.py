@@ -13,6 +13,7 @@ from django.apps import apps
 from django.forms import modelform_factory
 from django.utils import timezone
 from django.core.mail import send_mail
+from django.conf import settings
 from django.template.loader import render_to_string
 import sys
 import logging
