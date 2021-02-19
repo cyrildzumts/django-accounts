@@ -98,9 +98,13 @@ def send_validation(request, account_uuid):
     email_sent = False
     queryset = Account.objects.filter(user=request.user, account_uuid=account_uuid, email_validated=False)
     if not queryset.exists():
-        token= AccountService.generate_email_validation_token()
+        token = AccountService.generate_email_validation_token()
         expiration_date = AccountService.get_token_expire_time()
-        queryset.update(email_validation_token=token, validation_token_expire=expiration_date)
+        account.email_validation_token = token
+        account.validation_token_expire = expiration_date
+        account.save()
+        #queryset.update(email_validation_token=token, validation_token_expire=expiration_date)
+        #account.refresh_from_db()
         email_context = {
             'template_name': settings.DJANGO_VALIDATION_EMAIL_TEMPLATE,
             'title': 'Validation de votre adresse mail',
