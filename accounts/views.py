@@ -110,7 +110,7 @@ def send_validation(request, account_uuid):
                 'SITE_NAME': settings.SITE_NAME,
                 'SITE_HOST': settings.SITE_HOST,
                 'FULL_NAME': account.user.get_full_name(),
-                'validation_url' : settings.SITE_HOST.join(account.get_validation_url()) 
+                'validation_url' : settings.SITE_HOST + account.get_validation_url()
             }
         }
         account_services.send_validation_mail(email_context)
