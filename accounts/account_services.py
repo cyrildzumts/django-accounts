@@ -180,7 +180,7 @@ class AccountService(ABC):
             if account and token and account.email_validation_token == token :
                 logger.debug(f"Account {account} token is valid. Now checking the expiration date has expired.")
                 if account.validation_token_expire >= now :
-                    validated = Account.objects.filter(pk=account.pk, email_validation_token=token).update(is_active=True,email_validated=True, email_validated_token=None) == 1
+                    validated = Account.objects.filter(pk=account.pk, email_validation_token=token).update(is_active=True,email_validated=True, email_validation_token=None) == 1
                     User.objects.filter(id=account.user.id).update(is_active=True)
                     msg = "Email validated"
                     logger.debug(f"Account {account} validated.")
