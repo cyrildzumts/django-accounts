@@ -94,7 +94,6 @@ def register(request):
     return render(request, template_name, context)
 
 def send_validation(request, account_uuid):
-    template_name = "accounts/registration/send_validation.html"
     account = get_object_or_404(Account, account_uuid=account_uuid)
     email_sent = False
     queryset = Account.objects.filter(user=request.user, account_uuid=account_uuid, email_validated=False)
@@ -116,12 +115,12 @@ def send_validation(request, account_uuid):
         account_services.send_validation_mail(email_context)
         email_sent = True
         
-    context = {
-        'account': account,
-        'email_sent': email_sent
-    }
+    if email_sent:
+        messages.add_message(request, messages.INFO, "Validation has been sent")
+    else:
+        messages.add_message(request, messages.WARNING, "Validation could be sent")
 
-    return render(request, template_name, context)
+    return redirect('dashboard:user-detail', pk=account.user.pk)
 
 def validation_sent(request, info=None):
     if info:
