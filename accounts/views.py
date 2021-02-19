@@ -196,18 +196,6 @@ def registration_complete(request):
     """
     template_name = "accounts/registration/registration_complete.html"
     page_title = _('Registration Confirmation')
-    email_context = {
-        'template_name': settings.DJANGO_VALIDATION_EMAIL_TEMPLATE,
-        'title': 'Validation de votre adresse mail',
-        'recipient_email': request.user.email,
-        'context':{
-            'SITE_NAME': settings.SITE_NAME,
-            'SITE_HOST': settings.SITE_HOST,
-            'FULL_NAME': request.user.get_full_name(),
-            'validation_url' : settings.SITE_HOST.join(request.user.account.get_validation_url())
-        }
-    }
-    account_services.send_validation_mail(email_context)
     context = {
         'page_title': page_title,
         'template_name': template_name
