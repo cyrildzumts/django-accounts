@@ -176,17 +176,22 @@ class AccountService(ABC):
         now = timezone.now()
         if account_uuid and token:
             account = AccountService.get_account(account_uuid)
+            logger.debug(f"Validating Account {account} - account token : {account.email_validation_token} -  submitted token : {token}")
             if account and token and account.email_validation_token == token :
                 if account.validation_token_expire < now or account.validation_token_expire == now :
                     validated = Account.objects.filter(pk=account.pk, email_validation_token=token).update(is_active=True,email_validated=True, email_validated_token=None) == 1
                     User.objects.filter(id=account.user.id).update(is_active=True)
                     msg = "Email validated"
+                    logger.debug("Account {account} validated.")
                 else:
                     msg = "Token has expired"
+                    logger.warn("Account {account} not validated. {msg}")
             else:
                 msg = "Invalid data"
+                logger.warn("Account {account} not validated. {msg}")
         else:
             msg = "Invalid data. Account or token missing"
+            logger.warn("Account {account} not validated. {msg}")
 
         return {'account':account, 'validated' : validated, 'message' : msg}
 
