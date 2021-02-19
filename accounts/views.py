@@ -133,7 +133,7 @@ def email_validation(request, account_uuid=None, token=None):
 
     template_name = "accounts/registration/email_validation.html"
     page_title = "Email Validation"
-    account = get_object_or_404(Account, account_uuid=account_uuid, token=token)
+    account = get_object_or_404(Account, account_uuid=account_uuid, email_validation_token=token)
     result = AccountService.validate_email(account_uuid=account_uuid, token=token)
     context = {
         'account'   : account,
