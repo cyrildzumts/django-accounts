@@ -35,7 +35,7 @@ def login(request):
     page_title = _("Login")
     next_url = request.GET.get('next', '/')
     logger.info("Account Login request page Next : \"%s\"", next_url)
-    template_name = 'accounts/registration/login.html'
+    template_name = 'registration/login.html'
     if request.method == 'POST':
         next_url = request.POST.get('next', '/')
         result = AccountService.process_login_request(request)
@@ -69,7 +69,7 @@ def register(request):
     """
     User registration view
     """
-    template_name = "accounts/registration/register.html"
+    template_name = "registration/register.html"
     page_title = _('Registration')
     logger.info("New registration request")
     if request.method == 'POST':
@@ -138,7 +138,7 @@ def validation_sent(request, info=None):
 
 def email_validation(request, account_uuid=None, token=None):
 
-    template_name = "accounts/registration/email_validation.html"
+    template_name = "registration/email_validation.html"
     page_title = "Email Validation"
     account = get_object_or_404(Account, account_uuid=account_uuid, email_validation_token=token)
     result = AccountService.validate_email(account_uuid=account_uuid, token=token)
@@ -157,7 +157,7 @@ def password_change_views(request):
         This view is called when the user want to change its password
     """
     page_title = _('Password Modification')
-    template_name = "accounts/registration/password_change.html"
+    template_name = "registration/password_change.html"
     success_url = 'accounts:password-change-done'
     if request.method == 'POST':
         postdata = request.POST.copy()
@@ -187,7 +187,7 @@ def password_change_done_views(request):
     """ 
         This view is called when the user has changed its password
     """
-    template_name = "accounts/registration/password_change_done.html"
+    template_name = "registration/password_change_done.html"
     page_title = _('Confirmation')
     
     context = {
@@ -202,7 +202,7 @@ def registration_complete(request):
     """ 
         This view is called when the user has changed its password
     """
-    template_name = "accounts/registration/registration_complete.html"
+    template_name = "registration/registration_complete.html"
     page_title = _('Registration Confirmation')
     context = {
         'page_title': page_title,
@@ -215,7 +215,7 @@ def password_reset_views(request):
     """ 
         This view is called when the user want to reset her password
     """
-    template_name = "accounts/registration/password_reset_form.html"
+    template_name = "registration/password_reset_form.html"
     email_template_name = "registration/password_reset_email.html"
     page_title = _('Password reinitialization')
 
