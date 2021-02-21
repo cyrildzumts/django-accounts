@@ -13,7 +13,8 @@
 
   <section id="edit-user-bar" class="actions">
     <button class="mat-button mat-button-default js-edit-form" data-target="#account-form" data-disable="#edit-user-bar"><i class="fas fa-pen"></i>{% trans 'Edit' %}</button>
-    <a class="mat-button mat-button-defautl warn" href="#"><i class="fas fa-trash"></i> <span>{% trans 'Delete my Account'%}</span></a>
+    <a class="mat-button mat-button-default" href="{% url 'accounts:password-change' %}"><i class="fas fa-trash"></i> <span>{% trans 'Change password'%}</span></a>
+    {% comment "" %}<a class="mat-button mat-button-default warn" href="#"><i class="fas fa-trash"></i> <span>{% trans 'Delete my Account'%}</span></a>{% endcomment %}
   </section>
   
   <div class="mat-box">
