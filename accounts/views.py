@@ -100,8 +100,9 @@ def register(request):
 def send_validation(request, account_uuid):
     account = get_object_or_404(Account, account_uuid=account_uuid)
     email_sent = False
-    queryset = Account.objects.filter(user=request.user, account_uuid=account_uuid, email_validated=False)
+    queryset = Account.objects.filter(account_uuid=account_uuid, email_validated=True)
     if not queryset.exists():
+        logger.debug(f" account {account} not validated. sending validation link now")
         token = AccountService.generate_email_validation_token()
         expiration_date = AccountService.get_token_expire_time()
         account.email_validation_token = token
@@ -125,8 +126,10 @@ def send_validation(request, account_uuid):
         
     if email_sent:
         messages.add_message(request, messages.INFO, "Validation has been sent")
+        logger.debug(f" account {account} not validated. Validation link sent")
     else:
-        messages.add_message(request, messages.WARNING, "Validation could be sent")
+        messages.add_message(request, messages.WARNING, "Validation could not be sent")
+        logger.warn(f" account {account} not validated. Validation link not sent")
 
     return redirect('home')
 
