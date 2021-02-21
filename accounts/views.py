@@ -9,6 +9,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
 from django.contrib.auth import login as django_login, logout as django_logout, update_session_auth_hash
+from django.contrib.auth import views as auth_views
 from accounts import constants as Account_Constants, tokens_gen, account_services
 from accounts.models import Account
 from accounts.forms import AccountForm, AccountCreationForm, UserSignUpForm, UpdateAccountForm
@@ -22,6 +23,9 @@ from django.conf import settings
 import logging
 
 logger = logging.getLogger('accounts')
+
+class AccountPasswordResetView(auth_views.PasswordResetView):
+    pass
 
 # Create your views here.
 def login(request):
