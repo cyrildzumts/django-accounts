@@ -128,7 +128,7 @@ def send_validation(request, account_uuid):
     else:
         messages.add_message(request, messages.WARNING, "Validation could be sent")
 
-    return redirect('dashboard:user-detail', pk=account.user.pk)
+    return redirect('home')
 
 def validation_sent(request, info=None):
     if info:
