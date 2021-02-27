@@ -14,9 +14,6 @@ import logging
 
 logger = logging.getLogger('accounts')
 
-class AccountPasswordResetView(auth_views.PasswordResetView):
-    pass
-
 # Create your views here.
 def login(request):
     """
