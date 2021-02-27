@@ -1,23 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect, JsonResponse, HttpResponseForbidden
 from django.contrib import auth, messages
-from django.template import RequestContext
-from django.utils import timezone
 from django.utils.translation import gettext as _
-from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
-from django.contrib.auth import login as django_login, logout as django_logout, update_session_auth_hash
-from accounts import constants as Account_Constants, tokens_gen, account_services
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from accounts import constants as Account_Constants, account_services
 from accounts.models import Account
-from accounts.forms import AccountForm, AccountCreationForm, UserSignUpForm, UpdateAccountForm
-from django.forms.models import inlineformset_factory
-from django.core.exceptions import PermissionDenied
+from accounts.forms import  AccountCreationForm, UserSignUpForm, UpdateAccountForm
 from accounts.account_services import AccountService
-from django.urls import reverse_lazy
-from django.views.generic.edit import  UpdateView
-from django.db.models import F, Q
+from accounts.resources import ui_strings
 from django.conf import settings
 import logging
 
@@ -29,27 +20,29 @@ def login(request):
     Log in view
     """
     page_title = _("Login")
-    next_url = request.GET.get('next', '/')
-    logger.info("Account Login request page Next : \"%s\"", next_url)
     template_name = 'accounts/registration/login.html'
+    context = {}
     if request.method == 'POST':
         next_url = request.POST.get('next', '/')
         result = AccountService.process_login_request(request)
         if result['user_logged']:
-            logger.info("New user logged in. Next :\"%s\"", next_url)
+            user = result['user']
+            logger.info(f"User {user.username} logged in")
             return redirect(next_url)
+        else:
+            context['error'] = result['error']
     
     form = AccountService.get_authentication_form()
     register_form = AccountService.get_registration_form()
     
-    context = {
+    context.update({
         
         'page_title':page_title,
         'template_name':template_name,
         'next_url': next_url,
         'form': form,
         'registration_form': register_form,
-    }
+    })
     return render(request, template_name, context)
 
 
@@ -71,10 +64,10 @@ def register(request):
     if request.method == 'POST':
         result = AccountService.process_registration_request(request)
         if result['user_created']:
-            messages.add_message(request, messages.SUCCESS, 'Your Account has been created')
+            messages.add_message(request, messages.SUCCESS, ui_strings.ACCOUNT_REGISTRATION_SUCCESS_MESSAGE)
             return redirect("accounts:registration-complete")
         else:
-            messages.add_message(request, messages.ERROR, 'Your Account could not be created. Please checks the form and try again')
+            messages.add_message(request, messages.ERROR, ui_strings.ACCOUNT_REGISTRATION_ERROR_MESSAGE)
             account_form = AccountCreationForm(request.POST)
             user_form = UserSignUpForm(request.POST)
 
@@ -157,14 +150,14 @@ def password_change_views(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)
-            messages.success(request, _("Your password has been successfuly changed!"))
+            messages.success(request, ui_strings.USER_PASSWORD_CHANGED_SUCCESS)
             context = {
                 'changed' : True,
                 'redirect_to': success_url
             }
             return redirect(success_url)
         else:
-            messages.error(request, _('Your submitted for is not valide'))
+            messages.error(request, ui_strings.ACCOUNT_INVALID_FORM_DATA)
     else:
         form = PasswordChangeForm(request.user)
     
@@ -280,11 +273,11 @@ def account_update(request, account_uuid=None):
         if form.is_valid():
             logger.info("Edit Account form is valid. newsletter : %s", form.cleaned_data['newsletter'])
             form.save()
-            messages.success(request, _("You account has been successfuly updated."))
+            messages.success(request, ui_strings.ACCOUNT_UPDATE_SUCCESS_MESSAGE)
             return redirect('accounts:account')
         else:
             logger.info("Edit Account form is not valid. Errors : %s", form.errors)
-            messages.success(request, _("Your account could not be updated. Please check the form and try again."))
+            messages.warning(request, ui_strings.ACCOUNT_UPDATE_ERROR_MESSAGE)
     else :
         form = UpdateAccountForm(instance=instance)
     context = {
@@ -294,7 +287,6 @@ def account_update(request, account_uuid=None):
             'balance'     : instance.balance,
             'form': form
         }
-    
     return render(request, template_name,context )
 
 
