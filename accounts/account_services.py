@@ -15,6 +15,7 @@ from django.utils import timezone
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
+from accounts.resources import ui_strings
 import sys
 import logging
 import numbers
@@ -113,11 +114,17 @@ class AccountService(ABC):
         if form.is_valid():
             user = auth.authenticate(username=username, password=password)
             if user is not None:
+                if not user.account.email_validated:
+                    result_dict['error'] = ui_strings.LOGIN_ACCOUNT_EMAIL_NON_VALIDATED_ERROR
+                    return result_dict
                 if user.is_active:
                     auth.login(request, user)
                     logger.debug("[AccountService.process_login_request] : user is authenticated")
                     result_dict['user_logged'] = True
+                    result_dict['user'] = user
                     result_dict['next_url'] = request.GET.get('next', '/')
+                else:
+                    result_dict['error'] = ui_strings.LOGIN_USER_INACTIVE_ERROR
                 
         logger.debug("[AccountService.process_login_request] : finished")
         return result_dict

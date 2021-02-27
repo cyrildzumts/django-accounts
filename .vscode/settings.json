@@ -1,4 +1,0 @@
-{
-    "python.pythonPath": "../virtual_env/web_env/bin/python",
-    "emmet.includeLanguages": {"django-html":"html"}
-}
