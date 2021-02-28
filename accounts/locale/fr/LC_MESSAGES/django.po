@@ -1,0 +1,441 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-28 09:40+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. Translators:  These string only appear on any account related page
+#: resources/ui_strings.py:5
+msgid "Please, you have to validate your email address first."
+msgstr "Veuillez d'abord valider votre adresse e-mail."
+
+#: resources/ui_strings.py:6
+msgid "Please, your account is deactivated. Reactivate your account first."
+msgstr ""
+"S'il vous plaît, votre compte est désactivé. Réactivez d'abord votre compte."
+
+#: resources/ui_strings.py:7
+msgid "Your password has been successfully changed!"
+msgstr "Votre mot de passe a été changé avec succès!"
+
+#: resources/ui_strings.py:8
+msgid "Your submitted data is not valid"
+msgstr "Vos données soumises ne sont pas valides"
+
+#: resources/ui_strings.py:9
+msgid "Your account has been successfully updated."
+msgstr "Votre compte a été mis à jour avec succès."
+
+#: resources/ui_strings.py:10
+msgid "Your account could not be updated. Please check the form and try again."
+msgstr ""
+"Votre compte n'a pas pu être mis à jour. Veuillez vérifier le formulaire et "
+"réessayer."
+
+#: resources/ui_strings.py:11
+msgid "Your Account has been created"
+msgstr "Votre compte a été créé"
+
+#: resources/ui_strings.py:12
+msgid "Your Account could not be created. Please check the form and try again"
+msgstr ""
+"Votre compte n'a pas pu être créé. Veuillez vérifier le formulaire et "
+"réessayer"
+
+#: templates/account_base.html:10
+msgid "Account details"
+msgstr "Détails du compte"
+
+#: templates/accounts/account.html:9
+msgid "Welcome"
+msgstr "Bienvenu"
+
+#: templates/accounts/account.html:14 templates/tags/account_update_form.html:9
+#: views.py:268
+msgid "Edit my account"
+msgstr "Modifier mon compte"
+
+#: templates/accounts/account.html:15
+msgid "Change my password"
+msgstr "Changer mon mot de passe"
+
+#: templates/accounts/account_detail.html:9
+msgid "User Picture"
+msgstr "Image de l'utilisateur"
+
+#: templates/accounts/account_detail.html:15
+msgid "Edit"
+msgstr "Éditer"
+
+#: templates/accounts/account_detail.html:16
+msgid "Delete my Account"
+msgstr "Supprimer mon compte"
+
+#: templates/accounts/account_detail.html:26
+#: templates/accounts/registration/login.html:29
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: templates/accounts/account_detail.html:30
+msgid "Firstname"
+msgstr "Prénom"
+
+#: templates/accounts/account_detail.html:34
+msgid "Last name"
+msgstr "Nom de famille"
+
+#: templates/accounts/account_detail.html:38
+#: templates/accounts/registration/password_reset_form.html:27
+msgid "Email"
+msgstr "E-mail"
+
+#: templates/accounts/account_detail.html:42
+msgid "Date of Birth"
+msgstr "Date de naissance"
+
+#: templates/accounts/account_detail.html:46
+msgid "Phone"
+msgstr "Téléphone"
+
+#: templates/accounts/account_detail.html:50
+msgid "Newsletter Subscription"
+msgstr "Inscription à la Newsletter"
+
+#: templates/accounts/account_detail.html:60
+msgid "Last login"
+msgstr "Dernière connexion"
+
+#: templates/accounts/account_detail.html:69
+msgid "Date joined"
+msgstr "Date d'adhésion"
+
+#: templates/accounts/account_detail.html:77
+#: templates/accounts/registration/password_change.html:37
+#: templates/accounts/registration/password_reset_confirm.html:28
+#: templates/accounts/registration/password_reset_form.html:32
+#: templates/accounts/registration/register.html:48
+#: templates/tags/account_update_form.html:53
+msgid "Cancel"
+msgstr "Annuler"
+
+#: templates/accounts/account_detail.html:78
+#: templates/accounts/registration/password_reset_confirm.html:29
+msgid "Send"
+msgstr "Envoyer"
+
+#: templates/accounts/registration/email_validation.html:7
+#: templates/accounts/registration/registration_complete.html:7
+msgid "Registration successful"
+msgstr ""
+
+#: templates/accounts/registration/email_validation.html:17
+msgid ""
+"Great! Your email address has been verified. You can now log to your account."
+msgstr ""
+"Génial ! Votre adresse e-mail a été vérifiée. Vous pouvez maintenant vous "
+"connecter à votre compte."
+
+#: templates/accounts/registration/email_validation.html:18
+msgid "Go to your Account by following this link"
+msgstr "Accédez à votre compte en suivant ce lien"
+
+#: templates/accounts/registration/email_validation.html:19 views.py:240
+msgid "My Account"
+msgstr "Mon compte"
+
+#: templates/accounts/registration/email_validation.html:21
+msgid "Sorry! Your email address could not be verified."
+msgstr "Désolé ! Votre adresse e-mail n'a pas pu être vérifiée."
+
+#: templates/accounts/registration/email_validation.html:22
+msgid "Click on this link to get a new activation link"
+msgstr "Cliquez sur ce lien pour obtenir un nouveau lien d'activation"
+
+#: templates/accounts/registration/email_validation.html:23
+msgid "Send me a Validation link"
+msgstr "Envoyez-moi un lien de validation"
+
+#: templates/accounts/registration/email_validation.html:24
+#: templates/accounts/registration/registration_complete.html:19
+msgid "Home Page"
+msgstr "Page d'accueil"
+
+#: templates/accounts/registration/login.html:33
+msgid "Password"
+msgstr "Mot de passe"
+
+#: templates/accounts/registration/login.html:37
+#: templates/accounts/registration/password_reset_form.html:16
+msgid "Forgot your password ?"
+msgstr "Mot de passe oublié ?"
+
+#: templates/accounts/registration/login.html:40
+#: templates/accounts/registration/password_reset_complete.html:11 views.py:22
+msgid "Login"
+msgstr "Connexion"
+
+#: templates/accounts/registration/login.html:43
+msgid "New here ?"
+msgstr ""
+
+#: templates/accounts/registration/login.html:43
+msgid "Register"
+msgstr "Inscrivez-vous"
+
+#: templates/accounts/registration/password_change.html:7
+msgid "CHANGE PASSWORD"
+msgstr "CHANGER LE MOT DE PASSE"
+
+#: templates/accounts/registration/password_change.html:19
+msgid ""
+"Your password should not be too similar to your other personal information."
+msgstr ""
+"Votre mot de passe ne doit pas trop ressembler à vos autres information "
+"personnelles."
+
+#: templates/accounts/registration/password_change.html:20
+msgid "Your password must contain at least 8 characters."
+msgstr "Votre mot de passe doit contenir au moins 8 caractères."
+
+#: templates/accounts/registration/password_change.html:21
+msgid "Your password cannot be a commonly used password."
+msgstr ""
+"Votre mot de passe ne peut pas être un mot de passe couramment utilisé."
+
+#: templates/accounts/registration/password_change.html:22
+msgid "Your password must not be entirely numeric."
+msgstr "Votre mot de passe ne doit pas être entièrement numerique."
+
+#: templates/accounts/registration/password_change.html:27
+msgid "Old password"
+msgstr "Ancien mot de passe"
+
+#: templates/accounts/registration/password_change.html:30
+#: templates/accounts/registration/password_reset_confirm.html:20
+msgid "New password"
+msgstr "Nouveau mot de passe"
+
+#: templates/accounts/registration/password_change.html:33
+#: templates/accounts/registration/password_reset_confirm.html:24
+msgid "Confirm password"
+msgstr "Confirmation du mot de passe"
+
+#: templates/accounts/registration/password_change.html:38
+msgid "Change Password"
+msgstr "Changer le mot de passe"
+
+#: templates/accounts/registration/password_change_done.html:7
+msgid "PASSWORD CHANGED"
+msgstr "MODIFICATION DE MOT DE PASSE"
+
+#: templates/accounts/registration/password_change_done.html:16
+msgid "Your password has been changed successfully"
+msgstr "Votre mot de passe a été modifié avec succès"
+
+#: templates/accounts/registration/password_change_done.html:17
+#: templates/accounts/registration/password_reset_complete.html:7
+msgid "Back to home page"
+msgstr "Retour à la page d'accueille"
+
+#: templates/accounts/registration/password_reset_complete.html:6
+msgid "Password changed"
+msgstr "Mot de passe modifié"
+
+#: templates/accounts/registration/password_reset_confirm.html:5
+msgid "Password reset confirmation"
+msgstr "Confirmation de réinitialisation du mot de passe"
+
+#: templates/accounts/registration/password_reset_confirm.html:7
+#: templates/accounts/registration/password_reset_done.html:8 views.py:176
+msgid "Confirmation"
+msgstr "Confirmation"
+
+#: templates/accounts/registration/password_reset_confirm.html:8
+#: templates/accounts/registration/password_reset_done.html:9
+#: templates/accounts/registration/password_reset_form.html:9
+msgid "Home page"
+msgstr "Page d'accueil"
+
+#: templates/accounts/registration/password_reset_confirm.html:17
+msgid "Please enter your new password twice."
+msgstr "Veuillez saisir votre nouveau mot de passe deux fois."
+
+#: templates/accounts/registration/password_reset_confirm.html:34
+msgid ""
+"The reset password link is invalid. Make a new request if you want to reset "
+"your password"
+msgstr ""
+"Le lien de réinitialisation du mot de passe n'est pas valide. Faites une "
+"nouvelle demande si vous souhaitez réinitialiser votre mot de passe"
+
+#: templates/accounts/registration/password_reset_done.html:6
+#: templates/accounts/registration/password_reset_form.html:8
+msgid "Password reset"
+msgstr "Réinitialisation du mot de passe"
+
+#: templates/accounts/registration/password_reset_done.html:17
+msgid ""
+"We have sent you an email with instructions on how to reset your password."
+msgstr ""
+"Nous vous avons envoyé un e-mail contenant des instructions sur la "
+"réinitialisation de votre mot de passe."
+
+#: templates/accounts/registration/password_reset_done.html:18
+msgid "You should receive it in a moment."
+msgstr "Vous devriez le recevoir dans un instant."
+
+#: templates/accounts/registration/password_reset_done.html:20
+msgid ""
+"Check that you have given the correct email address, the one with which you "
+"registered with us."
+msgstr ""
+"Vérifiez que vous avez indiqué la bonne adresse e-mail, celle avec laquelle "
+"vous vous êtes inscrit."
+
+#: templates/accounts/registration/password_reset_done.html:22
+msgid "Also check your spam."
+msgstr "Vérifiez également votre spam."
+
+#: templates/accounts/registration/password_reset_email.html:5
+msgid ""
+"You are receiving this email because you requested to reset your password"
+msgstr ""
+"Vous recevez cet e-mail car vous avez demandé la réinitialisation du mot de "
+"passe de votre compte utilisateur"
+
+#: templates/accounts/registration/password_reset_email.html:7
+msgid "Please follow this link and choose a new password"
+msgstr ""
+"Veuillez vous rendre sur la page suivante et choisir un nouveau mot de passe:"
+
+#: templates/accounts/registration/password_reset_email.html:10
+msgid "Your username, in case you forgot it"
+msgstr "Votre nom d'utilisateur, au cas où vous auriez oublié:"
+
+#: templates/accounts/registration/password_reset_email.html:12
+msgid "Thank you for using our site!"
+msgstr "Merci d'utiliser notre site!"
+
+#: templates/accounts/registration/password_reset_email.html:14
+msgid "Sincerely"
+msgstr "Cordialement"
+
+#: templates/accounts/registration/password_reset_form.html:17
+msgid ""
+"Fill in your Email address in the field below and we'll send you "
+"instructions on how to reset your password."
+msgstr ""
+"Remplissez votre adresse e-mail dans le champ ci-dessous et nous vous "
+"enverrons des instructions sur la façon de réinitialiser votre mot de passe."
+
+#: templates/accounts/registration/password_reset_form.html:22
+msgid "We will never ask you for your password."
+msgstr "Nous ne vous demanderons jamais votre mot de passe."
+
+#: templates/accounts/registration/password_reset_form.html:33
+msgid "Reset"
+msgstr "Réinitialiser"
+
+#: templates/accounts/registration/register.html:29 views.py:62
+msgid "Registration"
+msgstr "Inscription"
+
+#: templates/accounts/registration/register.html:37
+msgid "Account type"
+msgstr "Type du compte"
+
+#: templates/accounts/registration/register.html:39
+msgid "Select an Account Type"
+msgstr "Sélectionnez un type de compte"
+
+#: templates/accounts/registration/register.html:49
+msgid "Create My Account"
+msgstr "Créé mon compte"
+
+#: templates/accounts/registration/register.html:52
+msgid "Already have an account ?"
+msgstr "Vous avez déjà un compte ?"
+
+#: templates/accounts/registration/register.html:52
+msgid "Sign In"
+msgstr "Se connecter"
+
+#: templates/accounts/registration/registration_complete.html:15
+msgid "You account has been successfully created."
+msgstr "Votre compte a été créé avec succès."
+
+#: templates/accounts/registration/registration_complete.html:16
+msgid "A verification email has been sent to your email"
+msgstr "Un e-mail de vérification a été envoyé à votre adresse e-mail"
+
+#: templates/accounts/registration/registration_complete.html:17
+msgid "Please open your email and follows the described steps"
+msgstr "Veuillez ouvrir l'e-mail et suivre les étapes décrites"
+
+#: templates/accounts/registration/registration_complete.html:18
+msgid "Once your email has been verified, you will able to use our service."
+msgstr ""
+"Génial ! Votre adresse e-mail a été vérifiée. Vous pouvez maintenant vous "
+"connecter à votre compte."
+
+#: templates/tags/account_update_form.html:18
+msgid "City"
+msgstr "Ville"
+
+#: templates/tags/account_update_form.html:22
+msgid "Province"
+msgstr "Province"
+
+#: templates/tags/account_update_form.html:26
+msgid "Telefon"
+msgstr "Téléphone"
+
+#: templates/tags/account_update_form.html:30
+msgid "Country"
+msgstr "Pays"
+
+#: templates/tags/account_update_form.html:34
+msgid "Address"
+msgstr ""
+
+#: templates/tags/account_update_form.html:38
+msgid "Zip Code"
+msgstr "Code postale"
+
+#: templates/tags/account_update_form.html:42
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: templates/tags/account_update_form.html:54
+msgid "Update my Account"
+msgstr "Mettre à jour mon compte"
+
+#: views.py:144
+msgid "Password Modification"
+msgstr "Modification du mot de passe"
+
+#: views.py:191
+msgid "Registration Confirmation"
+msgstr "confirmation d'enregistrement"
+
+#: views.py:217
+msgid "Password reinitialization"
+msgstr "Réinitialisation du mot de passe"
+
+#: views.py:253
+msgid "Account Details"
+msgstr "Détails du compte"

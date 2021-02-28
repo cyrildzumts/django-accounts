@@ -1,35 +1,33 @@
-{% comment "" %}
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block HEADER_BANNER %}
+    <div class="container">
+        <div class="flex flex-column registration-success">
+            <h3>{% trans 'Registration successful' %}</h3>
+        </div>
+        
+    </div>
+{% endblock HEADER_BANNER %}
+{% block MAIN %}
+<div class="container">
+    <div class="mat-box registration-success">
+    {% autoescape off %}
+        {% if validated %}
+            <p>{% blocktrans %}Great! Your email address has been verified. You can now log to your account.{% endblocktrans %}</p>
+            <p>{% blocktrans %}Go to your Account by following this link{% endblocktrans %} :</p>
+            <p><a href="{% url 'accounts:account' %}">{% trans "My Account" %}</a></p>
+        {% else %}
+            <p>{% blocktrans %}Sorry! Your email address could not be verified.{% endblocktrans %}</p>
+            <p>{% blocktrans %}Click on this link to get a new activation link{% endblocktrans %} :</p>
+            <p><a class="mat-button mat-button-text" href="{% url 'accounts:send-validation' account.account_uuid %}">{% trans "Send me a Validation link" %}</a></p>
+            <p><a class="mat-button mat-button-outlined" href="{% url 'home' %}">{% trans "Home Page" %}</a></p>
+        {% endif %}
+    {% endautoescape %}
+    </div>
+</div>
+        
+{% endblock MAIN %}
 
 
-{% load i18n %}{% autoescape off %}
-{% blocktrans %}You're receiving this email because you requested a password reset for your user account at {{ site_name }}.{% endblocktrans %}
 
-{% trans "Please go to the following page and choose a new password:" %}
-{% block reset_link %}
-{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
-{% endblock %}
-{% trans "Your username, in case you've forgotten:" %} {{ user.get_username }}
-
-{% trans "Thanks for using our site!" %}
-
-{% blocktrans %}The {{ site_name }} team{% endblocktrans %}
-
-{% endautoescape %}
-{% endcomment %}
-
-
-
-{% load i18n %}{% autoescape off %}
-{% if validated %}
-{% blocktrans %}Great ! Your email address has been verified. You can now log to your account.{% endblocktrans %}
-{% blocktrans %}Go to your Account by folowing this Link {% endblocktrans %} :
-<a href="{% url 'accounts:account' %}">{% trans "My Account" %}</a>
-{% else %}
-{% blocktrans %}Sorry !  Your email address could not be verified.{% endblocktrans %}
-{% blocktrans %}Click on this link to get a new activation link {% endblocktrans %} :
-<a class="mat-button mat-button-text" href="{% url 'accounts:send-validation' account.account_uuid %}">{% trans "Send me a Validation link" %}</a>
-<a class="mat-button mat-button-outlined" href="{% url 'home' %}">{% trans "Home Page" %}</a>
-{% endif %}
-
-
-{% endautoescape %}

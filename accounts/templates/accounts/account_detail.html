@@ -32,7 +32,7 @@
         <input id="firstname" class="js-editable" type="text" name="first_name" value="{{account.user.first_name}}">
       </div>
       <div class="mat-input">
-        <label for="lastname">{% trans 'Lastname'%}</label>
+        <label for="lastname">{% trans 'Last name'%}</label>
         <input id="lastname" class="js-editable" type="text" name="last_name" value="{{account.user.last_name}}">
       </div>
       <div class="mat-input">
@@ -48,7 +48,7 @@
           <input id="telefon" class="js-editable" type="text" name="telefon" value="{{account.telefon|default_if_none:''}}">
       </div>
       <div class="mat-input">
-          <label for="newsletter">{% trans 'Newsletter Subscribtion' %}</label>
+          <label for="newsletter">{% trans 'Newsletter Subscription' %}</label>
           <input id="newsletter" class="js-editable" type="checkbox" name="newsletter" value="{{account.newsletter}}" {% if account.newsletter %}checked {% endif %} disabled>
       </div>
     </div>
