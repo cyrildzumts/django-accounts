@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-27 20:47+0100\n"
+"POT-Creation-Date: 2021-02-28 09:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,8 @@ msgstr "Veuillez d'abord valider votre adresse e-mail."
 
 #: resources/ui_strings.py:6
 msgid "Please, your account is deactivated. Reactivate your account first."
-msgstr "S'il vous plaît, votre compte est désactivé. Réactivez d'abord votre compte."
+msgstr ""
+"S'il vous plaît, votre compte est désactivé. Réactivez d'abord votre compte."
 
 #: resources/ui_strings.py:7
 msgid "Your password has been successfully changed!"
@@ -41,7 +42,9 @@ msgstr "Votre compte a été mis à jour avec succès."
 
 #: resources/ui_strings.py:10
 msgid "Your account could not be updated. Please check the form and try again."
-msgstr "Votre compte n'a pas pu être mis à jour. Veuillez vérifier le formulaire et réessayer."
+msgstr ""
+"Votre compte n'a pas pu être mis à jour. Veuillez vérifier le formulaire et "
+"réessayer."
 
 #: resources/ui_strings.py:11
 msgid "Your Account has been created"
@@ -49,7 +52,9 @@ msgstr "Votre compte a été créé"
 
 #: resources/ui_strings.py:12
 msgid "Your Account could not be created. Please check the form and try again"
-msgstr "Votre compte n'a pas pu être créé. Veuillez vérifier le formulaire et réessayer"
+msgstr ""
+"Votre compte n'a pas pu être créé. Veuillez vérifier le formulaire et "
+"réessayer"
 
 #: templates/account_base.html:10
 msgid "Account details"
@@ -81,7 +86,7 @@ msgid "Delete my Account"
 msgstr "Supprimer mon compte"
 
 #: templates/accounts/account_detail.html:26
-#: templates/accounts/registration/login.html:30
+#: templates/accounts/registration/login.html:29
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
@@ -94,6 +99,7 @@ msgid "Last name"
 msgstr "Nom de famille"
 
 #: templates/accounts/account_detail.html:38
+#: templates/accounts/registration/password_reset_form.html:27
 msgid "Email"
 msgstr "E-mail"
 
@@ -118,138 +124,130 @@ msgid "Date joined"
 msgstr "Date d'adhésion"
 
 #: templates/accounts/account_detail.html:77
-#: templates/accounts/registration/password_change.html:49
-#: templates/accounts/registration/register.html:79
+#: templates/accounts/registration/password_change.html:37
+#: templates/accounts/registration/password_reset_confirm.html:28
+#: templates/accounts/registration/password_reset_form.html:32
+#: templates/accounts/registration/register.html:48
 #: templates/tags/account_update_form.html:53
-#: templates/tags/idcard_form.html:19 templates/tags/idcard_update_form.html:53
 msgid "Cancel"
 msgstr "Annuler"
 
-#: templates/accounts/account_detail.html:78 templates/tags/idcard_form.html:20
+#: templates/accounts/account_detail.html:78
+#: templates/accounts/registration/password_reset_confirm.html:29
 msgid "Send"
 msgstr "Envoyer"
 
-#: templates/accounts/registration/email_validation.html:5
-#: templates/accounts/registration/password_reset_email.html:5
-#, python-format
-msgid ""
-"You're receiving this email because you requested a password reset for your "
-"user account at %(site_name)s."
-msgstr "Vous recevez cet e-mail car vous avez demandé la réinitialisation du mot de passe de votre compte utilisateur à% (site_name) s."
-
 #: templates/accounts/registration/email_validation.html:7
-#: templates/accounts/registration/password_reset_email.html:7
-msgid "Please go to the following page and choose a new password:"
-msgstr "Veuillez vous rendre sur la page suivante et choisir un nouveau mot de passe:"
+#: templates/accounts/registration/registration_complete.html:7
+msgid "Registration successful"
+msgstr ""
 
-#: templates/accounts/registration/email_validation.html:11
-#: templates/accounts/registration/password_reset_email.html:11
-msgid "Your username, in case you've forgotten:"
-msgstr "Votre nom d'utilisateur, au cas où vous auriez oublié:"
-
-#: templates/accounts/registration/email_validation.html:13
-#: templates/accounts/registration/password_reset_email.html:13
-msgid "Thanks for using our site!"
-msgstr "Merci d'utiliser notre site!"
-
-#: templates/accounts/registration/email_validation.html:15
-#: templates/accounts/registration/password_reset_email.html:15
-#, python-format
-msgid "The %(site_name)s team"
-msgstr "L'équipe de% (site_name) s"
-
-#: templates/accounts/registration/email_validation.html:24
+#: templates/accounts/registration/email_validation.html:17
 msgid ""
-"Great ! Your email address has been verified. You can now log to your "
-"account."
-msgstr "Génial ! Votre adresse e-mail a été vérifiée. Vous pouvez maintenant vous connecter à votre compte."
+"Great! Your email address has been verified. You can now log to your account."
+msgstr ""
+"Génial ! Votre adresse e-mail a été vérifiée. Vous pouvez maintenant vous "
+"connecter à votre compte."
 
-#: templates/accounts/registration/email_validation.html:25
-msgid "Go to your Account by following this Link"
+#: templates/accounts/registration/email_validation.html:18
+msgid "Go to your Account by following this link"
 msgstr "Accédez à votre compte en suivant ce lien"
 
-#: templates/accounts/registration/email_validation.html:26 views.py:240
+#: templates/accounts/registration/email_validation.html:19 views.py:240
 msgid "My Account"
 msgstr "Mon compte"
 
-#: templates/accounts/registration/email_validation.html:28
-msgid "Sorry ! Your email address could not be verified."
+#: templates/accounts/registration/email_validation.html:21
+msgid "Sorry! Your email address could not be verified."
 msgstr "Désolé ! Votre adresse e-mail n'a pas pu être vérifiée."
 
-#: templates/accounts/registration/email_validation.html:29
+#: templates/accounts/registration/email_validation.html:22
 msgid "Click on this link to get a new activation link"
 msgstr "Cliquez sur ce lien pour obtenir un nouveau lien d'activation"
 
-#: templates/accounts/registration/email_validation.html:30
+#: templates/accounts/registration/email_validation.html:23
 msgid "Send me a Validation link"
 msgstr "Envoyez-moi un lien de validation"
 
-#: templates/accounts/registration/email_validation.html:31
+#: templates/accounts/registration/email_validation.html:24
+#: templates/accounts/registration/registration_complete.html:19
 msgid "Home Page"
 msgstr "Page d'accueil"
 
-#: templates/accounts/registration/login.html:36
+#: templates/accounts/registration/login.html:33
 msgid "Password"
 msgstr "Mot de passe"
 
-#: templates/accounts/registration/login.html:41
+#: templates/accounts/registration/login.html:37
+#: templates/accounts/registration/password_reset_form.html:16
 msgid "Forgot your password ?"
 msgstr "Mot de passe oublié ?"
 
-#: templates/accounts/registration/login.html:45 views.py:22
+#: templates/accounts/registration/login.html:40
+#: templates/accounts/registration/password_reset_complete.html:11 views.py:22
 msgid "Login"
 msgstr "Connexion"
 
-#: templates/accounts/registration/login.html:48
+#: templates/accounts/registration/login.html:43
 msgid "New here ?"
-msgstr "Nouveau ici ?"
+msgstr ""
 
-#: templates/accounts/registration/login.html:48
-msgid "Register instead"
-msgstr "Inscrivez-vous à la place"
+#: templates/accounts/registration/login.html:43
+msgid "Register"
+msgstr "Inscrivez-vous"
 
-#: templates/accounts/registration/password_change.html:27
-#: templates/accounts/registration/password_change.html:30
-msgid "Your password should not be too similar to your other personal information."
-msgstr "Votre mot de passe ne doit pas trop ressembler à vos autres information personnelles."
+#: templates/accounts/registration/password_change.html:7
+msgid "CHANGE PASSWORD"
+msgstr "CHANGER LE MOT DE PASSE"
 
-#: templates/accounts/registration/password_change.html:28
+#: templates/accounts/registration/password_change.html:19
+msgid ""
+"Your password should not be too similar to your other personal information."
+msgstr ""
+"Votre mot de passe ne doit pas trop ressembler à vos autres information "
+"personnelles."
+
+#: templates/accounts/registration/password_change.html:20
 msgid "Your password must contain at least 8 characters."
 msgstr "Votre mot de passe doit contenir au moins 8 caractères."
 
-#: templates/accounts/registration/password_change.html:29
+#: templates/accounts/registration/password_change.html:21
 msgid "Your password cannot be a commonly used password."
-msgstr "Votre mot de passe ne peut pas être un mot de passe couramment utilisé."
+msgstr ""
+"Votre mot de passe ne peut pas être un mot de passe couramment utilisé."
 
-#: templates/accounts/registration/password_change.html:31
-msgid "Your password does not have to be entirely numeric."
+#: templates/accounts/registration/password_change.html:22
+msgid "Your password must not be entirely numeric."
 msgstr "Votre mot de passe ne doit pas être entièrement numerique."
 
-#: templates/accounts/registration/password_change.html:37
-msgid "Old Password"
+#: templates/accounts/registration/password_change.html:27
+msgid "Old password"
 msgstr "Ancien mot de passe"
 
-#: templates/accounts/registration/password_change.html:41
-msgid "New Password"
+#: templates/accounts/registration/password_change.html:30
+#: templates/accounts/registration/password_reset_confirm.html:20
+msgid "New password"
 msgstr "Nouveau mot de passe"
 
-#: templates/accounts/registration/password_change.html:45
-msgid "Confirm new password"
-msgstr "Confirmation du nouveau mot de passe"
+#: templates/accounts/registration/password_change.html:33
+#: templates/accounts/registration/password_reset_confirm.html:24
+msgid "Confirm password"
+msgstr "Confirmation du mot de passe"
 
-#: templates/accounts/registration/password_change.html:50
+#: templates/accounts/registration/password_change.html:38
 msgid "Change Password"
 msgstr "Changer le mot de passe"
 
-#: templates/accounts/registration/password_change_done.html:8
-msgid "PASSWORD CHANGE"
+#: templates/accounts/registration/password_change_done.html:7
+msgid "PASSWORD CHANGED"
 msgstr "MODIFICATION DE MOT DE PASSE"
 
-#: templates/accounts/registration/password_change_done.html:13
-msgid "Your password has been successfully changed"
+#: templates/accounts/registration/password_change_done.html:16
+msgid "Your password has been changed successfully"
 msgstr "Votre mot de passe a été modifié avec succès"
 
-#: templates/accounts/registration/password_change_done.html:14
+#: templates/accounts/registration/password_change_done.html:17
+#: templates/accounts/registration/password_reset_complete.html:7
 msgid "Back to home page"
 msgstr "Retour à la page d'accueille"
 
@@ -257,143 +255,158 @@ msgstr "Retour à la page d'accueille"
 msgid "Password changed"
 msgstr "Mot de passe modifié"
 
-#: templates/accounts/registration/password_reset_complete.html:11
-msgid "Confirmation of password change"
-msgstr "Confirmation de changement du mot de passe"
-
-#: templates/accounts/registration/password_reset_complete.html:12
-#: templates/accounts/registration/password_reset_confirm.html:13
-#: templates/accounts/registration/password_reset_done.html:14
-msgid "Page d'accueille"
-msgstr ""
-
-#: templates/accounts/registration/password_reset_complete.html:18
-msgid ""
-"Votre mot de passe a été modifié. Vous maintenant vous connecter dans votre "
-"compte"
-msgstr ""
-
-#: templates/accounts/registration/password_reset_complete.html:20
-msgid ""
-msgstr "Me connecter"
+#: templates/accounts/registration/password_reset_confirm.html:5
+msgid "Password reset confirmation"
+msgstr "Confirmation de réinitialisation du mot de passe"
 
 #: templates/accounts/registration/password_reset_confirm.html:7
-msgid "Confirmation de réinitialisation de mot de passe"
-msgstr ""
+#: templates/accounts/registration/password_reset_done.html:8 views.py:176
+msgid "Confirmation"
+msgstr "Confirmation"
 
-#: templates/accounts/registration/password_reset_confirm.html:23
-msgid "Veuillez entrer votre nouveau mot de passe deux fois s'il vous plaît."
-msgstr ""
+#: templates/accounts/registration/password_reset_confirm.html:8
+#: templates/accounts/registration/password_reset_done.html:9
+#: templates/accounts/registration/password_reset_form.html:9
+msgid "Home page"
+msgstr "Page d'accueil"
 
-#: templates/accounts/registration/password_reset_confirm.html:32
-msgid "Changer mon mot de passe"
-msgstr ""
+#: templates/accounts/registration/password_reset_confirm.html:17
+msgid "Please enter your new password twice."
+msgstr "Veuillez saisir votre nouveau mot de passe deux fois."
 
-#: templates/accounts/registration/password_reset_confirm.html:37
+#: templates/accounts/registration/password_reset_confirm.html:34
 msgid ""
-"Le lien de réinitialisation du mot de passe est invalid. Faites une nouvelle "
-"requête si vous souhaitez réinitialiser votre mot de passe"
+"The reset password link is invalid. Make a new request if you want to reset "
+"your password"
 msgstr ""
+"Le lien de réinitialisation du mot de passe n'est pas valide. Faites une "
+"nouvelle demande si vous souhaitez réinitialiser votre mot de passe"
 
-#: templates/accounts/registration/password_reset_done.html:8
-#: templates/accounts/registration/password_reset_form.html:7
-msgid "Réinitialisation de mot de passe"
-msgstr ""
+#: templates/accounts/registration/password_reset_done.html:6
+#: templates/accounts/registration/password_reset_form.html:8
+msgid "Password reset"
+msgstr "Réinitialisation du mot de passe"
 
-#: templates/accounts/registration/password_reset_done.html:25
+#: templates/accounts/registration/password_reset_done.html:17
 msgid ""
-"Nous vous avons envoyé un mail contenant les instructions pour reinitialiser "
-"votre mot de passe."
+"We have sent you an email with instructions on how to reset your password."
 msgstr ""
+"Nous vous avons envoyé un e-mail contenant des instructions sur la "
+"réinitialisation de votre mot de passe."
 
-#: templates/accounts/registration/password_reset_done.html:26
-msgid "Vous devriez le recevoir dans un instant."
-msgstr ""
+#: templates/accounts/registration/password_reset_done.html:18
+msgid "You should receive it in a moment."
+msgstr "Vous devriez le recevoir dans un instant."
 
-#: templates/accounts/registration/password_reset_done.html:27
+#: templates/accounts/registration/password_reset_done.html:20
 msgid ""
-"Si vous ne recevez aucun mail de nous, vérifez que vous avez donné la bonne "
-"addresse email, celle avec laquelle vous vous êtes enrégistré chez nous. "
-"Verifier aussi vos spams."
+"Check that you have given the correct email address, the one with which you "
+"registered with us."
 msgstr ""
+"Vérifiez que vous avez indiqué la bonne adresse e-mail, celle avec laquelle "
+"vous vous êtes inscrit."
 
-#: templates/accounts/registration/password_reset_email.html:23
-#, python-format
+#: templates/accounts/registration/password_reset_done.html:22
+msgid "Also check your spam."
+msgstr "Vérifiez également votre spam."
+
+#: templates/accounts/registration/password_reset_email.html:5
 msgid ""
-"Vous recevez ce mail parce vous avez demandé de réinitialiser votre mot de "
-"passe chez %(site_name)s."
+"You are receiving this email because you requested to reset your password"
 msgstr ""
+"Vous recevez cet e-mail car vous avez demandé la réinitialisation du mot de "
+"passe de votre compte utilisateur"
 
-#: templates/accounts/registration/password_reset_email.html:25
-msgid "Veuillez suivre ce lien et choisissez un nouveau mot de passe:"
+#: templates/accounts/registration/password_reset_email.html:7
+msgid "Please follow this link and choose a new password"
 msgstr ""
+"Veuillez vous rendre sur la page suivante et choisir un nouveau mot de passe:"
 
-#: templates/accounts/registration/password_reset_email.html:29
-msgid "Votre nom d'utilisateur, au cas où vous l'aurez oublié:"
-msgstr ""
+#: templates/accounts/registration/password_reset_email.html:10
+msgid "Your username, in case you forgot it"
+msgstr "Votre nom d'utilisateur, au cas où vous auriez oublié:"
 
-#: templates/accounts/registration/password_reset_email.html:31
-msgid "Merci d'utiliser notre site!"
-msgstr ""
+#: templates/accounts/registration/password_reset_email.html:12
+msgid "Thank you for using our site!"
+msgstr "Merci d'utiliser notre site!"
 
-#: templates/accounts/registration/password_reset_email.html:33
-#, python-format
-msgid " Team  %(site_name)s "
-msgstr ""
+#: templates/accounts/registration/password_reset_email.html:14
+msgid "Sincerely"
+msgstr "Cordialement"
 
-#: templates/accounts/registration/password_reset_form.html:13
-msgid "Home"
-msgstr ""
-
-#: templates/accounts/registration/password_reset_form.html:24
-msgid "Vous avez oublié votre mot de passe ?"
-msgstr ""
-
-#: templates/accounts/registration/password_reset_form.html:25
+#: templates/accounts/registration/password_reset_form.html:17
 msgid ""
-"Remplisser votre addresse Email dans le champs en dessous et nous vous "
-"enverrons des instructions sur comment remettre votre mot de passe à zero"
+"Fill in your Email address in the field below and we'll send you "
+"instructions on how to reset your password."
 msgstr ""
+"Remplissez votre adresse e-mail dans le champ ci-dessous et nous vous "
+"enverrons des instructions sur la façon de réinitialiser votre mot de passe."
+
+#: templates/accounts/registration/password_reset_form.html:22
+msgid "We will never ask you for your password."
+msgstr "Nous ne vous demanderons jamais votre mot de passe."
 
 #: templates/accounts/registration/password_reset_form.html:33
-msgid "Nous ne vous demanderons jamais votre mot passe."
-msgstr ""
+msgid "Reset"
+msgstr "Réinitialiser"
 
-#: templates/accounts/registration/password_reset_form.html:38
-msgid "Entrer votre addresse E-mail"
-msgstr ""
-
-#: templates/accounts/registration/password_reset_form.html:42
-msgid "Annuler"
-msgstr ""
-
-#: templates/accounts/registration/password_reset_form.html:43
-msgid "Reinitialiser"
-msgstr ""
-
-#: templates/accounts/registration/register.html:22 views.py:62
+#: templates/accounts/registration/register.html:29 views.py:62
 msgid "Registration"
-msgstr ""
+msgstr "Inscription"
 
-#: templates/accounts/registration/register.html:80
+#: templates/accounts/registration/register.html:37
+msgid "Account type"
+msgstr "Type du compte"
+
+#: templates/accounts/registration/register.html:39
+msgid "Select an Account Type"
+msgstr "Sélectionnez un type de compte"
+
+#: templates/accounts/registration/register.html:49
 msgid "Create My Account"
+msgstr "Créé mon compte"
+
+#: templates/accounts/registration/register.html:52
+msgid "Already have an account ?"
+msgstr "Vous avez déjà un compte ?"
+
+#: templates/accounts/registration/register.html:52
+msgid "Sign In"
+msgstr "Se connecter"
+
+#: templates/accounts/registration/registration_complete.html:15
+msgid "You account has been successfully created."
+msgstr "Votre compte a été créé avec succès."
+
+#: templates/accounts/registration/registration_complete.html:16
+msgid "A verification email has been sent to your email"
+msgstr "Un e-mail de vérification a été envoyé à votre adresse e-mail"
+
+#: templates/accounts/registration/registration_complete.html:17
+msgid "Please open your email and follows the described steps"
+msgstr "Veuillez ouvrir l'e-mail et suivre les étapes décrites"
+
+#: templates/accounts/registration/registration_complete.html:18
+msgid "Once your email has been verified, you will able to use our service."
 msgstr ""
+"Génial ! Votre adresse e-mail a été vérifiée. Vous pouvez maintenant vous "
+"connecter à votre compte."
 
 #: templates/tags/account_update_form.html:18
 msgid "City"
-msgstr ""
+msgstr "Ville"
 
 #: templates/tags/account_update_form.html:22
 msgid "Province"
-msgstr ""
+msgstr "Province"
 
 #: templates/tags/account_update_form.html:26
 msgid "Telefon"
-msgstr ""
+msgstr "Téléphone"
 
 #: templates/tags/account_update_form.html:30
 msgid "Country"
-msgstr ""
+msgstr "Pays"
 
 #: templates/tags/account_update_form.html:34
 msgid "Address"
@@ -401,73 +414,19 @@ msgstr ""
 
 #: templates/tags/account_update_form.html:38
 msgid "Zip Code"
-msgstr ""
+msgstr "Code postale"
 
 #: templates/tags/account_update_form.html:42
 msgid "Newsletter"
-msgstr ""
+msgstr "Newsletter"
 
 #: templates/tags/account_update_form.html:54
 msgid "Update my Account"
-msgstr ""
-
-#: templates/tags/idcard_form.html:10
-msgid "ID Number"
-msgstr ""
-
-#: templates/tags/idcard_form.html:14
-msgid "ID Image File"
-msgstr ""
-
-#: templates/tags/idcard_update_form.html:14
-msgid "Update my ID Card"
-msgstr ""
-
-#: templates/tags/idcard_update_form.html:25
-msgid "Card Number"
-msgstr ""
-
-#: templates/tags/idcard_update_form.html:29
-msgid "Issued Date"
-msgstr ""
-
-#: templates/tags/idcard_update_form.html:33
-msgid "Epire at "
-msgstr ""
-
-#: templates/tags/idcard_update_form.html:37
-msgid "Delivrance place"
-msgstr ""
-
-#: templates/tags/idcard_update_form.html:41
-msgid "ID card Picture"
-msgstr ""
-
-#: templates/tags/idcard_update_form.html:47
-msgid "Current ID image"
-msgstr ""
-
-#: templates/tags/idcard_update_form.html:54
-msgid "Update"
-msgstr ""
-
-#: templates/tags/upload_idcard_done_content.html:4
-msgid ""
-"Your Id  was succesfull uploaded. You will be redirected to your account "
-"page in an instant. Click here to directly go to your"
-msgstr ""
-
-#: templates/tags/upload_idcard_done_content.html:7
-msgid "Account"
-msgstr ""
+msgstr "Mettre à jour mon compte"
 
 #: views.py:144
 msgid "Password Modification"
 msgstr "Modification du mot de passe"
-
-#: views.py:176
-msgid "Confirmation"
-msgstr "Confirmation"
 
 #: views.py:191
 msgid "Registration Confirmation"
