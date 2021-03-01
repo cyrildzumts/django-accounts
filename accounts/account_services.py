@@ -114,7 +114,7 @@ class AccountService(ABC):
         if form.is_valid():
             user = auth.authenticate(username=username, password=password)
             if user is not None:
-                if not user.account.email_validated:
+                if not user.account.email_validated and not user.is_superuser:
                     result_dict['error'] = ui_strings.LOGIN_ACCOUNT_EMAIL_NON_VALIDATED_ERROR
                     return result_dict
                 if user.is_active:
@@ -125,7 +125,8 @@ class AccountService(ABC):
                     result_dict['next_url'] = request.GET.get('next', '/')
                 else:
                     result_dict['error'] = ui_strings.LOGIN_USER_INACTIVE_ERROR
-                
+        else:
+
         logger.debug("[AccountService.process_login_request] : finished")
         return result_dict
     
