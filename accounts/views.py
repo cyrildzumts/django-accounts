@@ -34,7 +34,7 @@ def login(request):
     
     form = AccountService.get_authentication_form()
     register_form = AccountService.get_registration_form()
-    
+    next_url = request.GET.get('next', '/')
     context.update({
         
         'page_title':page_title,
