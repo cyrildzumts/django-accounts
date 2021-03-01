@@ -126,7 +126,7 @@ class AccountService(ABC):
                 else:
                     result_dict['login_error'] = ui_strings.LOGIN_USER_INACTIVE_ERROR
         else:
-
+            result_dict['login_error'] = ui_strings.ACCOUNT_INVALID_FORM_DATA
         logger.debug("[AccountService.process_login_request] : finished")
         return result_dict
     
