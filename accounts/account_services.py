@@ -125,6 +125,8 @@ class AccountService(ABC):
                     result_dict['next_url'] = request.GET.get('next', '/')
                 else:
                     result_dict['login_error'] = ui_strings.LOGIN_USER_INACTIVE_ERROR
+            else:
+                result_dict['login_error'] = ui_strings.ACCOUNT_INVALID_FORM_DATA
         else:
             result_dict['login_error'] = ui_strings.ACCOUNT_INVALID_FORM_DATA
         logger.debug("[AccountService.process_login_request] : finished")
