@@ -112,14 +112,19 @@ class AccountService(ABC):
         password = postdata['password']
         logger.info("[AccountService.process_login_request] : starting")
         if form.is_valid():
+            logger.info("Login Form is valid")
             user = auth.authenticate(username=username, password=password)
+
             if user is not None:
+                logger.info(f"User {username} authenticated")
                 if not user.account.email_validated and not user.is_superuser:
+                    logger.info(f"User {username} email not validated")
                     result_dict['login_error'] = ui_strings.LOGIN_ACCOUNT_EMAIL_NON_VALIDATED_ERROR
                     return result_dict
                 if user.is_active:
+                    logger.info(f"Trying to log User {username} in.")
                     auth.login(request, user)
-                    logger.debug("[AccountService.process_login_request] : user is authenticated")
+                    logger.debug(f"user {username} logged in")
                     result_dict['user_logged'] = True
                     result_dict['user'] = user
                     result_dict['next_url'] = request.GET.get('next', '/')
