@@ -18,9 +18,7 @@
         <div class="container">
             <div class="col-6">
                 <div id="account-dialog" class="container padding-1x">
-                    <div>
-                        <h3>{{SITE_NAME}}</h3>
-                    </div>
+                    <h3>{{SITE_NAME}}</h3>
                     <div id="user-login" class="user-login flex mat-box">
                         <form id="login-form" class="login-form" action="{% url 'accounts:login' %}" method="post"> {% csrf_token %}
                             {% if login_error %}
