@@ -30,7 +30,10 @@ def login(request):
             logger.info(f"User {user.username} logged in")
             return redirect(next_url)
         else:
-            context['login_error'] = result['login_error']
+            usename = result['username']
+            error_msg = result['login_error']
+            logger.warning(f"User {username} could be logged in. Error : {error_msg}")
+            context['login_error'] = error_msg
     
     form = AccountService.get_authentication_form()
     register_form = AccountService.get_registration_form()

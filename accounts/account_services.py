@@ -113,6 +113,7 @@ class AccountService(ABC):
         logger.info("[AccountService.process_login_request] : starting")
         if form.is_valid():
             logger.info("Login Form is valid")
+            result_dict['username'] = username
             user = auth.authenticate(username=username, password=password)
 
             if user is not None:
@@ -120,6 +121,7 @@ class AccountService(ABC):
                 if not user.account.email_validated and not user.is_superuser:
                     logger.info(f"User {username} email not validated")
                     result_dict['login_error'] = ui_strings.LOGIN_ACCOUNT_EMAIL_NON_VALIDATED_ERROR
+                    
                     return result_dict
                 if user.is_active:
                     logger.info(f"Trying to log User {username} in.")
@@ -131,6 +133,7 @@ class AccountService(ABC):
                 else:
                     result_dict['login_error'] = ui_strings.LOGIN_USER_INACTIVE_ERROR
             else:
+                logger.warning(f"User {username} could not be found.")
                 result_dict['login_error'] = ui_strings.ACCOUNT_INVALID_FORM_DATA
         else:
             result_dict['login_error'] = ui_strings.ACCOUNT_INVALID_FORM_DATA
