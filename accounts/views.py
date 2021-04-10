@@ -30,7 +30,7 @@ def login(request):
             logger.info(f"User {user.username} logged in")
             return redirect(next_url)
         else:
-            usename = result['username']
+            username = result['username']
             error_msg = result['login_error']
             logger.warning(f"User {username} could be logged in. Error : {error_msg}")
             context['login_error'] = error_msg
