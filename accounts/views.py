@@ -33,6 +33,8 @@ def login(request):
             username = result['username']
             error_msg = result['login_error']
             logger.warning(f"User {username} could be logged in. Error : {error_msg}")
+            messages.error(request, error_msg)
+            context['has_login_error'] = True
             context['login_error'] = error_msg
     
     form = AccountService.get_authentication_form()
