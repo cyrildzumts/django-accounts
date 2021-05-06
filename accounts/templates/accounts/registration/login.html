@@ -37,13 +37,13 @@
                                     <input id="password" type="password" name="password">
                             </div>
                             
-                            <div class="actions">
+                            <div class="actions padding-v">
                                 <button id="login-submit" class="mat-button mat-button-default full"  name="submit" type="submit">{% trans "Login" %}</button>
                             </div>
-                            <div class="actions">
+                            <div class="actions padding-v">
                                 <a class="mat-button mat-button-text full" href="{% url 'accounts:password-reset' %}">{% trans "Forgot your password ?" %}</a>
                             </div>
-                            <div class="actions">
+                            <div class="actions padding-v">
                                 <span class="register-hint">{% trans "New here ?" %}</span><a class="mat-button mat-button-default register-btn" href="{% url 'accounts:register' %}">{% trans "Create your Account" %}</a>
                             </div>
                         </form>
