@@ -73,21 +73,18 @@ def register(request):
             return redirect("accounts:registration-complete")
         else:
             messages.add_message(request, messages.ERROR, ui_strings.ACCOUNT_REGISTRATION_ERROR_MESSAGE)
-            account_form = AccountCreationForm(request.POST)
             user_form = UserSignUpForm(request.POST)
 
     else:
         # form = UserCreationForm()
         #form = AccountService.get_registration_form()
-        account_form = AccountCreationForm()
+        #account_form = AccountCreationForm()
         user_form = UserSignUpForm()
     context = {
         'page_title': page_title,
         'template_name': template_name,
         #'form': form,
-        'account_form' : account_form,
         'user_form': user_form,
-        'ACCOUNT_TYPE': Account_Constants.ACCOUNT_TYPE
     }
     return render(request, template_name, context)
 

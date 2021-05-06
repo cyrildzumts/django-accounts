@@ -21,8 +21,7 @@
   
   <form id="account-form" class="form-non-edit" action="{% url 'accounts:update' account.account_uuid %}" method="post">{% csrf_token %}
   <section id="user-infos" class="grid">
-    <div class="col-m-12 col-4">
-    <div class="mat-box">
+    <div class="mat-box medium">
       <div class="mat-input">
         <label for="username" >{% trans 'Username'%}</label>
         <input id="username" class="js-non-editable non-editable" type="text" name="username" value="{{account.user.username}}" disabled>
@@ -51,26 +50,13 @@
           <label for="newsletter">{% trans 'Newsletter Subscription' %}</label>
           <input id="newsletter" class="js-editable" type="checkbox" name="newsletter" value="{{account.newsletter}}" {% if account.newsletter %}checked {% endif %} disabled>
       </div>
-    </div>
-    </div>
-
-    <div class="full">
-      <div class="col-m-12 col-6">
-        <div class="mat-box">
-            <div class="mat-input">
-                <label>{% trans 'Last login' %}</label>
-                <span>{{account.user.last_login}}</span>
-            </div>
-        </div>
-        
+      <div class="mat-input">
+          <label>{% trans 'Last login' %}</label>
+          <span>{{account.user.last_login}}</span>
       </div>
-      <div class="col-m-12 col-6">
-        <div class="mat-box">
-            <div class="mat-input">
-                <label>{% trans 'Date joined' %}</label>
-                <span>{{account.user.date_joined}}</span>
-            </div>
-        </div>
+      <div class="mat-input">
+          <label>{% trans 'Date joined' %}</label>
+          <span>{{account.user.date_joined}}</span>
       </div>
     </div>
   </section>

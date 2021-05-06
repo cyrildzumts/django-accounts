@@ -152,29 +152,29 @@ class AccountService(ABC):
         result_dict['next_url'] = "/"
         postdata = request.POST.copy()
         user_form = UserSignUpForm(postdata)
-        account_form = AccountCreationForm(postdata)
+        #account_form = AccountCreationForm(postdata)
         user_form_is_valid = user_form.is_valid()
-        account_form_is_valid = account_form.is_valid()
-        if user_form_is_valid and account_form_is_valid:
+        #account_form_is_valid = account_form.is_valid()
+        if user_form_is_valid :
             user = user_form.save()
             User.objects.filter(id=user.id).update(is_active=False)
 
             result_dict['user_created'] = True
             logger.info(f"User {user.username} has been created")
             user.refresh_from_db()
-            account_form = AccountCreationForm(postdata, instance=user.account)
-            account_form.full_clean()
-            account = account_form.save()
-            result_dict['account'] = account
-            result_dict['account_created'] = True
+            #account_form = AccountCreationForm(postdata, instance=user.account)
+            #account_form.full_clean()
+            #account = account_form.save()
+            #result_dict['account'] = account
+            #result_dict['account_created'] = True
             logger.debug("User Account creation succesfull")
                 
         else :
             logger.error("Error on registration below is the errors found in the submitted form : ")
             if not user_form_is_valid:
                 logger.error( f"User form data invalid: {user_form.errors}")
-            if not account_form_is_valid:
-                logger.error( f"Account form data invalid: {account_form.errors}")
+            #if not account_form_is_valid:
+            #    logger.error( f"Account form data invalid: {account_form.errors}")
         return result_dict
 
 
