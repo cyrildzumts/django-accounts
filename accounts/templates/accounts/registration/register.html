@@ -26,7 +26,7 @@
           <h4>{%trans 'Registration'%}</h4>
       </div>
       <form class="signup-form full" action="{% url 'accounts:register'%}" method="POST">{% csrf_token %}
-        <div class="grid">
+        <div class="container">
             <div class="mat-box full">
               {% include "tags/form_snippet.html" with form=user_form %}
               {% comment %}
