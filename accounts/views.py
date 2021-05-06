@@ -63,7 +63,7 @@ def register(request):
     """
     User registration view
     """
-    template_name = "registration/register.html"
+    template_name = "accounts/registration/register.html"
     page_title = _('Registration')
     logger.info("New registration request")
     if request.method == 'POST':
