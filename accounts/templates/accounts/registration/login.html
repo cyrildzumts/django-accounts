@@ -24,8 +24,8 @@
                     <h3>{% trans "Member Login" %}</h3>
                     <div id="user-login" class="user-login flex mat-box">
                         <form id="login-form" class="login-form" action="{% url 'accounts:login' %}" method="post"> {% csrf_token %}
-                            {% if has_login_error %}
-                                <span class="login-error warning ">{% trans login_error %}</span>
+                            {% if login_error %}
+                                <div class="login-error error">{% trans login_error %}</div>
                             {% endif %}
                             <input type="hidden" name="next" value="{{next_url}}">
                             <div class="form-group">
