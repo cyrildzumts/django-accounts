@@ -108,12 +108,13 @@ class AccountService(ABC):
         result_dict['user_logged'] = False
         postdata = request.POST.copy()
         form = AuthenticationForm(data=postdata)
-        username = postdata['username']
-        password = postdata['password']
+        username = postdata.get('username', '')
+        password = postdata.get('password')
+        result_dict['username'] = username
         logger.info("[AccountService.process_login_request] : starting")
         if form.is_valid():
             logger.info("Login Form is valid")
-            result_dict['username'] = username
+            
             user = auth.authenticate(username=username, password=password)
 
             if user is not None:
