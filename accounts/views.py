@@ -6,7 +6,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from accounts import constants as Account_Constants, account_services
 from accounts.models import Account
-from accounts.forms import  AccountCreationForm, UserSignUpForm, UpdateAccountForm
+from accounts.forms import  AccountCreationForm, UserSignUpForm, UpdateAccountForm, UpdateUserForm
 from accounts.account_services import AccountService
 from accounts.resources import ui_strings
 from django.conf import settings
@@ -265,15 +265,17 @@ def account_update(request, account_uuid=None):
     page_title = _("Edit my account")
     instance = get_object_or_404(Account, account_uuid=account_uuid)
     template_name = "accounts/account_update.html"
-    if request.method =="POST":
-        form = UpdateAccountForm(request.POST, instance=instance)
-        if form.is_valid():
-            logger.info("Edit Account form is valid. newsletter : %s", form.cleaned_data['newsletter'])
-            form.save()
+    if request.method == "POST":
+        userForm = UpdateUserForm(request.POST.copy(), instance=request.user)
+        accountForm = UpdateAccountForm(request.POST.copy(), instance=instance)
+        if userForm.is_valid() and accountForm.is_valid():
+            logger.info("Edit Account form is valid.")
+            userForm.save()
+            accountForm.save()
             messages.success(request, ui_strings.ACCOUNT_UPDATE_SUCCESS_MESSAGE)
             return redirect('accounts:account')
         else:
-            logger.info("Edit Account form is not valid. Errors : %s", form.errors)
+            logger.info("Edit Account form is not valid. Errors : %s %s", userForm.errors, accountForm.errors)
             messages.warning(request, ui_strings.ACCOUNT_UPDATE_ERROR_MESSAGE)
     else :
         form = UpdateAccountForm(instance=instance)

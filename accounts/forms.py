@@ -40,6 +40,13 @@ class UpdateAccountForm(forms.ModelForm):
         fields = ("telefon","newsletter",)
 
 
+class UpdateUserForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name']
+
+
 class AccountForm(forms.ModelForm):
     class Meta:
         model = Account
