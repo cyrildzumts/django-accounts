@@ -245,7 +245,7 @@ def generate_customer_id():
     return crypto.get_random_string(length=9, allowed_chars=constants.RANDOM_CUSTOMER_ID_CHARACTERS)
 
 def generate_customer_ids():
-    queryset = Account.objects.filter(customer_id=None)
+    queryset = Account.objects.all()
     for acc in queryset:
         acc.customer_id = generate_customer_id()
         acc.save()
