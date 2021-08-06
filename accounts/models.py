@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
 from django.utils import timezone
+from django.utils import crypto
 from accounts import constants as ACCOUNT_CONSTANTS
 import uuid
 import secrets
@@ -17,6 +18,9 @@ def ident_file_path(instance, filename):
     name = "avatar" + "." + file_ext
     return "identifications/ser_{0}_{1}".format(instance.user.id, name)
 
+def generate_customer_id():
+    return crypto.get_random_string(length=9, allowed_chars=ACCOUNT_CONSTANTS.RANDOM_CUSTOMER_ID_CHARACTERS)
+
 class Account(models.Model):
     """
     The Account Model extends the User Model with a profile.
@@ -29,6 +33,7 @@ class Account(models.Model):
     newsletter = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
+    customer_id = models.IntegerField(default=generate_customer_id, blank=True, null=True)
     account_type = models.IntegerField(default=ACCOUNT_CONSTANTS.ACCOUNT_PRIVATE, blank=True, null=True, choices=ACCOUNT_CONSTANTS.ACCOUNT_TYPE)
     account_uuid = models.UUIDField(default=uuid.uuid4, editable=False, blank=True, null=True)
     email_validation_token = models.CharField(max_length=128, default=get_activation_token, blank=True, null=True)

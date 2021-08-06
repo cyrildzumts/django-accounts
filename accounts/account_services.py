@@ -12,6 +12,7 @@ from django.db.models import F, Q
 from django.apps import apps
 from django.forms import modelform_factory
 from django.utils import timezone
+from django.utils import crypto
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
@@ -239,6 +240,17 @@ def get_validation_url(account):
     if isinstance(account, Account):
         return account.get_validation_url()
     return None
+
+def generate_customer_id():
+    return crypto.get_random_string(length=9, allowed_chars=constants.RANDOM_CUSTOMER_ID_CHARACTERS)
+
+def generate_customer_ids():
+    queryset = Account.objects.filter(customer_id=None)
+    for acc in queryset:
+        acc.customer_id = generate_customer_id()
+        acc.save()
+
+    
 
 
 def send_validation_mail(email_context):
