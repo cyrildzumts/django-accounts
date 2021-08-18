@@ -36,8 +36,10 @@ def login(request):
             messages.error(request, error_msg)
             context['has_login_error'] = True
             context['login_error'] = error_msg
-    
-    form = AccountService.get_authentication_form()
+            form = result.get('form')
+    else:
+        form = AccountService.get_authentication_form()
+
     register_form = AccountService.get_registration_form()
     next_url = request.GET.get('next', '/')
     context.update({
@@ -73,7 +75,7 @@ def register(request):
             return redirect("accounts:registration-complete")
         else:
             messages.add_message(request, messages.ERROR, ui_strings.ACCOUNT_REGISTRATION_ERROR_MESSAGE)
-            user_form = UserSignUpForm(request.POST)
+            user_form = result['form']
 
     else:
         # form = UserCreationForm()
@@ -83,7 +85,7 @@ def register(request):
     context = {
         'page_title': page_title,
         'template_name': template_name,
-        #'form': form,
+        'form': user_form,
         'user_form': user_form,
     }
     return render(request, template_name, context)

@@ -139,6 +139,7 @@ class AccountService(ABC):
                 result_dict['login_error'] = ui_strings.ACCOUNT_INVALID_FORM_DATA
         else:
             result_dict['login_error'] = ui_strings.ACCOUNT_INVALID_FORM_DATA
+            result_dict['form'] = form
         logger.debug("[AccountService.process_login_request] : finished")
         return result_dict
     
@@ -173,8 +174,10 @@ class AccountService(ABC):
                 
         else :
             logger.error("Error on registration below is the errors found in the submitted form : ")
+            result_dict['form'] = user_form
             if not user_form_is_valid:
                 logger.error( f"User form data invalid: {user_form.errors}")
+
             #if not account_form_is_valid:
             #    logger.error( f"Account form data invalid: {account_form.errors}")
         return result_dict
