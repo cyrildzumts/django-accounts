@@ -75,8 +75,11 @@ def register(request):
             messages.add_message(request, messages.SUCCESS, ui_strings.ACCOUNT_REGISTRATION_SUCCESS_MESSAGE)
             user = result['user']
             user.refresh_from_db()
-            account = user.account
-            return redirect("accounts:registration-complete", account_uuid=account.account_uuid)
+            try:
+                account_uuid = user.account.account_uuid
+            except Exception:
+                account_uuid = None
+            return redirect("accounts:registration-complete", account_uuid=account_uuid)
         else:
             messages.add_message(request, messages.ERROR, ui_strings.ACCOUNT_REGISTRATION_ERROR_MESSAGE)
             user_form = result['form']
@@ -198,16 +201,17 @@ def password_change_done_views(request):
 
 
 
-def registration_complete(request, account_uuid):
+def registration_complete(request, account_uuid=None):
     """ 
         This view is called when the user has changed its password
     """
     new_user = None
-    try:
-        account = Account.objects.get(account_uuid=account_uuid)
-        new_user = account.user
-    except User.DoesNotExist:
-        pass
+    if account_uuid is not None:
+        try:
+            account = Account.objects.get(account_uuid=account_uuid)
+            new_user = account.user
+        except User.DoesNotExist:
+            pass
     template_name = "registration/registration_complete.html"
     page_title = _('Registration Confirmation')
     context = {
