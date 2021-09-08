@@ -73,7 +73,10 @@ def register(request):
         result = AccountService.process_registration_request(request)
         if result['user_created']:
             messages.add_message(request, messages.SUCCESS, ui_strings.ACCOUNT_REGISTRATION_SUCCESS_MESSAGE)
-            return redirect("accounts:registration-complete", user_id=result['user'].id)
+            user = result['user']
+            user.refresh_from_db()
+            account = user.account
+            return redirect("accounts:registration-complete", account_uuid=account.account_uuid)
         else:
             messages.add_message(request, messages.ERROR, ui_strings.ACCOUNT_REGISTRATION_ERROR_MESSAGE)
             user_form = result['form']
@@ -195,13 +198,14 @@ def password_change_done_views(request):
 
 
 
-def registration_complete(request, user_id=-1):
+def registration_complete(request, account_uuid):
     """ 
         This view is called when the user has changed its password
     """
     new_user = None
     try:
-        new_user = User.objects.get(pk=user_id)
+        account = Account.objects.get(account_uuid=account_uuid)
+        new_user = account.user
     except User.DoesNotExist:
         pass
     template_name = "registration/registration_complete.html"
