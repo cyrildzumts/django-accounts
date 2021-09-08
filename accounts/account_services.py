@@ -163,14 +163,9 @@ class AccountService(ABC):
             User.objects.filter(id=user.id).update(is_active=False)
 
             result_dict['user_created'] = True
-            logger.info(f"User {user.username} has been created")
             user.refresh_from_db()
-            #account_form = AccountCreationForm(postdata, instance=user.account)
-            #account_form.full_clean()
-            #account = account_form.save()
-            #result_dict['account'] = account
-            #result_dict['account_created'] = True
-            logger.debug("User Account creation succesfull")
+            result_dict['user'] = user
+            logger.info(f"New User {user.username} has been created")
                 
         else :
             logger.error("Error on registration below is the errors found in the submitted form : ")

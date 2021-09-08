@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import auth, messages
 from django.utils.translation import gettext as _
@@ -72,7 +73,7 @@ def register(request):
         result = AccountService.process_registration_request(request)
         if result['user_created']:
             messages.add_message(request, messages.SUCCESS, ui_strings.ACCOUNT_REGISTRATION_SUCCESS_MESSAGE)
-            return redirect("accounts:registration-complete")
+            return redirect("accounts:registration-complete", user_id=result['user'].id)
         else:
             messages.add_message(request, messages.ERROR, ui_strings.ACCOUNT_REGISTRATION_ERROR_MESSAGE)
             user_form = result['form']
@@ -194,15 +195,21 @@ def password_change_done_views(request):
 
 
 
-def registration_complete(request):
+def registration_complete(request, user_id=-1):
     """ 
         This view is called when the user has changed its password
     """
+    new_user = None
+    try:
+        new_user = User.objects.get(pk=user_id)
+    except User.DoesNotExist:
+        pass
     template_name = "registration/registration_complete.html"
     page_title = _('Registration Confirmation')
     context = {
         'page_title': page_title,
-        'template_name': template_name
+        'template_name': template_name,
+        'new_user': new_user
     }
     return render(request, template_name, context)
 
