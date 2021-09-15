@@ -189,6 +189,7 @@ class AccountService(ABC):
 
     @staticmethod
     def validate_email(account_uuid, token):
+        logger.info("validating email : ...")
         validated = False
         account = None
         msg = None

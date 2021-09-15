@@ -140,7 +140,7 @@ def validation_sent(request, info=None):
     pass
 
 def email_validation(request, account_uuid=None, token=None):
-
+    logger.info("Account email validation...")
     template_name = "registration/email_validation.html"
     page_title = "Email Validation"
     account = get_object_or_404(Account, account_uuid=account_uuid, email_validation_token=token)
