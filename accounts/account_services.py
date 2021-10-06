@@ -117,7 +117,7 @@ class AccountService(ABC):
             logger.info("Login Form is valid")
             
             user = auth.authenticate(username=username, password=password)
-
+            session_key = request.session.session_key
             if user is not None:
                 logger.info(f"User {username} authenticated")
                 if not user.account.email_validated and not user.is_superuser:
@@ -132,6 +132,8 @@ class AccountService(ABC):
                     result_dict['user_logged'] = True
                     result_dict['user'] = user
                     result_dict['next_url'] = request.GET.get('next', '/')
+                    if settings.SEND_USER_LOGGED_IN_SIGNAL:
+                        settings.SIGNA_USER_LOGGED_IN.send(sender=User, session_key=session_key, user=user,request=request)
                 else:
                     result_dict['login_error'] = ui_strings.LOGIN_USER_INACTIVE_ERROR
             else:
