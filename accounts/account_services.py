@@ -127,13 +127,14 @@ class AccountService(ABC):
                     return result_dict
                 if user.is_active:
                     logger.info(f"Trying to log User {username} in.")
+                    session_items = request.session.items()
                     auth.login(request, user)
                     logger.debug(f"user {username} logged in")
                     result_dict['user_logged'] = True
                     result_dict['user'] = user
                     result_dict['next_url'] = request.GET.get('next', '/')
                     if hasattr(settings, 'SEND_USER_LOGGED_IN_SIGNAL') and settings.SEND_USER_LOGGED_IN_SIGNAL:
-                        settings.SIGNA_USER_LOGGED_IN.send(sender=User, session_key=session_key, user=user,request=request)
+                        settings.SIGNA_USER_LOGGED_IN.send(sender=User, session_key=session_key, user=user,request=request, session_items=session_items)
                 else:
                     result_dict['login_error'] = ui_strings.LOGIN_USER_INACTIVE_ERROR
             else:
