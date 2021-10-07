@@ -162,12 +162,18 @@ class AccountService(ABC):
         user_form_is_valid = user_form.is_valid()
         #account_form_is_valid = account_form.is_valid()
         if user_form_is_valid :
+            session_key = request.session.session_key
+
             user = user_form.save()
+            session_items = request.session.items()
             User.objects.filter(id=user.id).update(is_active=False)
 
             result_dict['user_created'] = True
             user.refresh_from_db()
+
             result_dict['user'] = user
+            if hasattr(settings, 'SEND_USER_REGISTERED_SIGNAL') and settings.SEND_USER_REGISTERED_SIGNAL:
+                        settings.SIGNA_USER_REGISTERED.send(sender=User, session_key=session_key, user=user,request=request, session_items=session_items)
             logger.info(f"New User {user.username} has been created")
                 
         else :
