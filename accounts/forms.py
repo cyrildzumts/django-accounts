@@ -95,18 +95,35 @@ class UserSignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name','password1', 'password2','email']
+
+
+    def clean_first_name(self):
+        first_name = self.cleaned_data.get('first_name')
+        if not first_name :
+            raise ValidationError(f"missing first_name:")
+
+        return first_name
+
+    def clean_last_name(self):
+        last_name = self.cleaned_data.get('last_name')
+        if not last_name :
+            raise ValidationError(f"missing last_name:")
+
+        return last_name
     
     def clean_username(self):
         username = self.cleaned_data.get('username')
         
-        if username is None or len(username) < constants.USERNAME_MIN_LENGTH :
+        if not username or len(username) < constants.USERNAME_MIN_LENGTH :
             raise ValidationError(f"invalid username: \"{username}\".  Username must be at least {constants.USERNAME_MIN_LENGTH} characters long")
         if User.objects.filter(username=username).exists():
             raise ValidationError(f"A user with this username : \"{username}\" is already in use")
         return username
 
     def clean_email(self):
-        email = self.cleaned_data['email']
+        email = self.cleaned_data.get('email')
+        if not email :
+            raise ValidationError(f"missing email")
         if User.objects.filter(email=email).exists():
             raise ValidationError("This email is already in use")
         return email
