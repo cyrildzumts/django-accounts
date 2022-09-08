@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from accounts.models import Account
 from django.contrib.admin.widgets import AdminDateWidget
 from django.core.exceptions import ValidationError
+from accounts import constants
 import datetime
 
 class UserForm(forms.ModelForm):
@@ -75,6 +76,16 @@ class AuthenticationForm(forms.Form):
 
     class Meta:
         fields = ['username', 'password']
+    
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        
+        if username is None or len(username) < constants.USERNAME_MIN_LENGTH :
+            raise ValidationError(f"invalid username: \"{username}\".  Username must be at least {constants.USERNAME_MIN_LENGTH} characters long")
+
+        if not User.objects.filter(username=username).exists():
+            raise ValidationError(f"bad username or password")
+        return username
 
 
 
@@ -85,6 +96,15 @@ class UserSignUpForm(UserCreationForm):
         model = User
         fields = ['username', 'first_name', 'last_name','password1', 'password2','email']
     
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        
+        if username is None or len(username) < constants.USERNAME_MIN_LENGTH :
+            raise ValidationError(f"invalid username: \"{username}\".  Username must be at least {constants.USERNAME_MIN_LENGTH} characters long")
+        if User.objects.filter(username=username).exists():
+            raise ValidationError(f"A user with this username : \"{username}\" is already in use")
+        return username
+
     def clean_email(self):
         email = self.cleaned_data['email']
         if User.objects.filter(email=email).exists():
