@@ -245,7 +245,6 @@ def user_account(request):
      user's infos ...  So this method have to provide these
      informations to the template.
      This view must provide a context providing the following informations :
-     *current balance
      *transaction history
      *list of available services
      *a list of favoris
@@ -300,7 +299,6 @@ def account_update(request, account_uuid=None):
             'page_title':page_title,
             'template_name':template_name,
             'account' : instance,
-            'balance'     : instance.balance,
             'form': form
         }
     return render(request, template_name,context )
